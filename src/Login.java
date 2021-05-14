@@ -17,7 +17,7 @@ import java.awt.Font;
 
 public class Login extends JFrame {
 	/**
-	 * 
+	 * github
 	 */
 	private static final long serialVersionUID = 1L;
 	Color color1 = new Color(234, 238, 241);
