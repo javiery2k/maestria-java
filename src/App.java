@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class App extends JFrame {
 	Color color1 = new Color(234, 238, 241);
@@ -51,31 +53,9 @@ public class App extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(color2);
 		panel.setForeground(color3);
-		panel.setBounds(0, 0, 289, 513);
+		panel.setBounds(0, 0, 281, 513);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
-		Button button = new Button("Ingresar Vehiculo");
-		button.setBackground(Color.WHITE);
-		button.setBounds(27, 369, 115, 60);
-		panel.add(button);
-
-		Button button_1 = new Button("Retirar Vehiculo");
-		button_1.setBounds(148, 369, 115, 60);
-		panel.add(button_1);
-
-		Button button_1_1 = new Button("Listar Vehiculos");
-		button_1_1.setBounds(27, 435, 115, 60);
-		panel.add(button_1_1);
-
-		Button button_1_1_1 = new Button("Salir");
-		button_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-			}
-		});
-		button_1_1_1.setBounds(148, 435, 115, 60);
-		panel.add(button_1_1_1);
 
 		JLabel lblNewLabel = new JLabel("Parking v1.0");
 		lblNewLabel.setForeground(Color.WHITE);
@@ -87,6 +67,31 @@ public class App extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(App.class.getResource("/assets/parking-logo.png")));
 		lblNewLabel_1.setBounds(80, 174, 128, 128);
 		panel.add(lblNewLabel_1);
+		
+		JButton btnNewButton = new JButton("Ingresar Vehiculo");
+		btnNewButton.setForeground(SystemColor.textHighlight);
+		btnNewButton.setBounds(27, 369, 115, 60);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
+		btnNewButton_1.setForeground(SystemColor.textHighlight);
+		btnNewButton_1.setBounds(148, 369, 115, 60);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Salir");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnNewButton_2.setForeground(SystemColor.textHighlight);
+		btnNewButton_2.setBounds(148, 435, 115, 60);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
+		btnNewButton_3.setForeground(SystemColor.textHighlight);
+		btnNewButton_3.setBounds(27, 435, 115, 60);
+		panel.add(btnNewButton_3);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setVisible(false);
