@@ -11,11 +11,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 public class AppConection<user> {
 	Connection conn;
 	String driver;
 	String path;
+	String FechaHora = "";
+	String Estado = "";
 
 	/**
 	 * 
@@ -23,14 +32,15 @@ public class AppConection<user> {
 	public AppConection() {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
-		path =  getClass().getResource("bd/DATOS.accdb").getFile();
+		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
 		this.conectar();
 	}
 
 	public boolean logearse(String user, String pass) {
 		try {
 
-			PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM USUARIOS WHERE USERNAME = ? AND PASS = ? LIMIT 1");
+			PreparedStatement pstmt = conn
+					.prepareStatement("SELECT * FROM USUARIOS WHERE USERNAME = ? AND PASS = ? LIMIT 1");
 			pstmt.setString(1, user);
 			pstmt.setString(2, pass);
 			ResultSet rs = pstmt.executeQuery();
@@ -55,10 +65,42 @@ public class AppConection<user> {
 		return false;
 	}
 
+	// Insertar
+
+	void insertar(String placa, String propietario, String tipovehiculo, String estado) {
+		try {
+
+			PreparedStatement pstmt = conn.prepareStatement(
+					"INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, ESTADO) VALUES (?, ?, ?, ?, ?)");
+			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+			Calendar cal = Calendar.getInstance();
+			Date date = cal.getTime();
+			FechaHora = dateFormat.format(date);
+			Estado = "Disponible";
+
+			pstmt.setString(1, placa);
+			pstmt.setString(2, propietario);
+			pstmt.setString(3, tipovehiculo);
+			pstmt.setString(4, FechaHora);
+			pstmt.setString(7, Estado);
+
+			pstmt.executeUpdate(); // insert, delete, update
+			JOptionPane.showMessageDialog(null, "Registro Guardado");
+			pstmt.close();
+			conn.close();
+		} catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Error, sus datos no fueron ingresados\n" + sqle);
+		}
+
+		// return false;
+	}
+
+	// Conectar
+
 	public Connection conectar() {
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection("jdbc:ucanaccess:/"+path);
+			conn = DriverManager.getConnection("jdbc:ucanaccess://" + path);
 			if (conn == null) {
 				System.out.println("Connection cannot be established");
 			}
