@@ -2,9 +2,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -18,7 +21,25 @@ public class IngresarVehiculo extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField placa;
 	private JTextField propietario;
+	private JButton btn_registrar;
+	
 
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					IngresarVehiculo frame = new IngresarVehiculo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -76,7 +97,7 @@ public class IngresarVehiculo extends JPanel {
 		comentario.setBounds(174, 285, 301, 85);
 		add(comentario);
 
-		JButton btn_registrar = new JButton("REGISTRAR");
+		btn_registrar = new JButton("REGISTRAR");
 		btn_registrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -88,7 +109,12 @@ public class IngresarVehiculo extends JPanel {
 				String field3 = tipo_vehiculo.getSelectedItem().toString();
 				String field4 = comentario.getText();
 
-				conn.insertar(field1, field2, field3, field4, "INGRESO");
+				 if ( conn.insertar(field1, field2, field3, field4, "INGRESO") ) {
+					 JOptionPane.showMessageDialog(null, "Registro Ingresado");
+				 }else {
+					 JOptionPane.showMessageDialog(null, "Hubo problemas al ingresar el registro");
+				 }
+				 
 			}
 		});
 		btn_registrar.setBounds(210, 402, 122, 39);

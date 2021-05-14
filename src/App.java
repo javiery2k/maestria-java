@@ -60,22 +60,29 @@ public class App extends JFrame {
 		JLabel label_titulo = new JLabel("Parking v1.0");
 		label_titulo.setForeground(Color.WHITE);
 		label_titulo.setFont(new Font("Century Gothic", Font.BOLD, 27));
-		label_titulo.setBounds(65, 87, 160, 34);
+		label_titulo.setBounds(60, 50, 160, 34);
 		panel.add(label_titulo);
 		
 		JLabel icon_logo = new JLabel("");
 		icon_logo.setIcon(new ImageIcon(App.class.getResource("/assets/parking-logo.png")));
-		icon_logo.setBounds(80, 174, 128, 128);
+		icon_logo.setBounds(76, 147, 128, 128);
 		panel.add(icon_logo);
 		
 		JButton btn_ingresar = new JButton("INGREGAR");
+		btn_ingresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Codigo Para Abrir el Panel de Ingresar el Vehiulo
+				
+			}
+		});
 		btn_ingresar.setForeground(SystemColor.textHighlight);
 		btn_ingresar.setBounds(27, 369, 115, 60);
 		panel.add(btn_ingresar);
 		
 		JButton btn_retirar = new JButton("RETIRAR");
 		btn_retirar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
+				//Codigo Para Abrir el Panel de Retirar el Vehiculo
 			}
 		});
 		btn_retirar.setForeground(SystemColor.textHighlight);
@@ -93,6 +100,11 @@ public class App extends JFrame {
 		panel.add(btn_salir);
 		
 		JButton btn_listar = new JButton("LISTAR");
+		btn_listar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Codigo Para Abrir el Panel de Listar los vehiculos
+			}
+		});
 		btn_listar.setForeground(SystemColor.textHighlight);
 		btn_listar.setBounds(27, 435, 115, 60);
 		panel.add(btn_listar);
@@ -100,7 +112,7 @@ public class App extends JFrame {
 		JLabel label_opciones = new JLabel("OPCIONES");
 		label_opciones.setForeground(Color.WHITE);
 		label_opciones.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		label_opciones.setBounds(95, 335, 92, 23);
+		label_opciones.setBounds(94, 335, 92, 23);
 		panel.add(label_opciones);
 
 		JPanel panel_secundario1 = new JPanel();
