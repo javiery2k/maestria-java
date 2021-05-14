@@ -90,7 +90,7 @@ public class App extends JFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setVisible(false);
-		panel_2.setBounds(286, 0, 700, 513);
+		panel_2.setBounds(286, 0, 1, 513);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
