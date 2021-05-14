@@ -52,6 +52,7 @@ public class Login extends JFrame {
 		setTitle("Sistemas de Estacionamientos en Java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 350);
+		setResizable(false);
 		/**
 		 * Jpanel Principal
 		 */
@@ -93,7 +94,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_2_1 = new JLabel("SISTEMA DE ESTACIONAMIENTOS");
 		lblNewLabel_2_1.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblNewLabel_2_1.setForeground(new Color(42, 88, 173));
-		lblNewLabel_2_1.setBounds(43, 234, 252, 21);
+		lblNewLabel_2_1.setBounds(30, 234, 265, 21);
 		panel.add(lblNewLabel_2_1);
 
 		JLabel lblNewLabel_3 = new JLabel("");
@@ -104,7 +105,7 @@ public class Login extends JFrame {
 		JLabel lblNewLabel_2_1_1 = new JLabel("Todos los derechos reservados 2021");
 		lblNewLabel_2_1_1.setForeground(new Color(42, 88, 173));
 		lblNewLabel_2_1_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		lblNewLabel_2_1_1.setBounds(81, 288, 173, 14);
+		lblNewLabel_2_1_1.setBounds(75, 288, 185, 14);
 		panel.add(lblNewLabel_2_1_1);
 
 		/**
@@ -162,7 +163,9 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// Obtenemos los valores ingresados
 				String user = textField.getText();
-				String pass = passwordField.getText();
+				/*String pass = passwordField.getText();*/					 
+				char pasArray[] = passwordField.getPassword();
+				String pass = new String(pasArray);					
 
 				// Validamos las credenciales
 				if (!user.isEmpty() && !pass.isEmpty()) {

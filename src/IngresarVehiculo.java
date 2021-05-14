@@ -80,6 +80,6 @@ public class IngresarVehiculo extends JPanel {
 					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);
-
+		
 	}
 }
