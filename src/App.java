@@ -72,7 +72,7 @@ public class App extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		
-		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
 		
 		JButton btnNewButton = new JButton("Ingresar Vehiculo");
 		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
