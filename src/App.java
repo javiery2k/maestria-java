@@ -42,7 +42,7 @@ public class App extends JFrame {
 	public App() {
 		setTitle("Control de Estacionamientos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 550);
+		setBounds(100, 100, 297, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,7 +90,7 @@ public class App extends JFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setVisible(false);
-		panel_2.setBounds(286, 0, 700, 513);
+		panel_2.setBounds(286, 0, 1, 513);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
