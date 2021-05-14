@@ -23,7 +23,8 @@ public class AppConection<user> {
 	public AppConection() {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
-		path = "//C:/up/bd/DATOS.accdb";
+		path = "//C:\\up\\bd\\DATOS.accdb";
+		
 		this.conectar();
 	}
 
@@ -58,7 +59,7 @@ public class AppConection<user> {
 	public Connection conectar() {
 		try {
 			Class.forName(driver);
-			conn = DriverManager.getConnection("jdbc:ucanaccess:" + path);
+			conn = DriverManager.getConnection("jdbc:ucanaccess:"+path);
 			if (conn == null) {
 				System.out.println("Connection cannot be established");
 			}
@@ -66,7 +67,7 @@ public class AppConection<user> {
 			return conn;
 
 		} catch (Exception e) {
-			System.out.println("Connection cannot be established");
+			System.out.println(e.toString());
 		}
 		return conn;
 	}
