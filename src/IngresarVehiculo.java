@@ -76,7 +76,7 @@ public class IngresarVehiculo extends JPanel {
 		comentario.setBounds(174, 285, 301, 85);
 		add(comentario);
 
-		JButton btn_registrar = new JButton("Registrar");
+		JButton btn_registrar = new JButton("REGISTRAR");
 		btn_registrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
