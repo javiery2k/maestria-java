@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Color;
+import javax.swing.border.BevelBorder;
 
 public class IngresarVehiculo extends JPanel {
 	private JTextField textField;
@@ -17,9 +18,11 @@ public class IngresarVehiculo extends JPanel {
 	 * Create the panel.
 	 */
 	public IngresarVehiculo() {
+		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		setBounds(282, 0, 695, 505);
 		
 		JLabel lblNewLabel = new JLabel("Placa");
 		

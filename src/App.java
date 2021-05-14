@@ -15,12 +15,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.Insets;
+import java.awt.Component;
 
 public class App extends JFrame {
 	Color color1 = new Color(234, 238, 241);
 	Color color2 = new Color(42, 88, 173);
 	Color color3 = new Color(34, 171, 233);
 	private JPanel contentPane;
+	private IngresarVehiculo ingresarVehiculo;
 
 	/**
 	 * Launch the application.
@@ -44,7 +47,7 @@ public class App extends JFrame {
 	public App() {
 		setTitle("Control de Estacionamientos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 297, 550);
+		setBounds(100, 100, 285, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,7 +56,7 @@ public class App extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(color2);
 		panel.setForeground(color3);
-		panel.setBounds(0, 0, 281, 513);
+		panel.setBounds(0, 0, 276, 513);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -68,29 +71,46 @@ public class App extends JFrame {
 		lblNewLabel_1.setBounds(80, 174, 128, 128);
 		panel.add(lblNewLabel_1);
 		
+		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
 		JButton btnNewButton = new JButton("Ingresar Vehiculo");
+		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setBounds(100, 100, 1000, 550);
+				ingresarVehiculo = new IngresarVehiculo();
+				ingresarVehiculo.setVisible(true);
+				getContentPane().add(ingresarVehiculo);				
+			}
+		});
+		
 		btnNewButton.setForeground(SystemColor.textHighlight);
-		btnNewButton.setBounds(27, 369, 115, 60);
+		btnNewButton.setBounds(15, 369, 115, 60);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
+		btnNewButton_1.setAlignmentY(Component.TOP_ALIGNMENT);
+		btnNewButton_1.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_1.setForeground(SystemColor.textHighlight);
-		btnNewButton_1.setBounds(148, 369, 115, 60);
+		btnNewButton_1.setBounds(142, 369, 115, 60);
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Salir");
+		btnNewButton_2.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
 		btnNewButton_2.setForeground(SystemColor.textHighlight);
-		btnNewButton_2.setBounds(148, 435, 115, 60);
+		btnNewButton_2.setBounds(142, 435, 115, 60);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
+		btnNewButton_3.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_3.setForeground(SystemColor.textHighlight);
-		btnNewButton_3.setBounds(27, 435, 115, 60);
+		btnNewButton_3.setBounds(15, 435, 115, 60);
 		panel.add(btnNewButton_3);
 
 		JPanel panel_2 = new JPanel();
