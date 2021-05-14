@@ -53,11 +53,9 @@ public class RetirarVehiculo extends JPanel {
 				AppConection conn = new AppConection();
 				// Leemos los campos
 				String field1 = placa.getText();
-				String field2 = propietario.getText();
-				String field3 = tipo_vehiculo.getSelectedItem().toString();
-				String field4 = comentario.getText();
+				
 
-				conn.insertar(field1, field2, field3, field4, "INGRESO");
+				//conn.insertar(field1, field2, field3, field4, "INGRESO");
 			}
 		});
 		btn_retirar.setBounds(216, 285, 122, 39);
