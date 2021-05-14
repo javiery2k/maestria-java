@@ -23,7 +23,8 @@ public class App extends JFrame {
 	Color color2 = new Color(42, 88, 173);
 	Color color3 = new Color(34, 171, 233);
 	private JPanel contentPane;
-	private IngresarVehiculo ingresarVehiculo;
+	private IngresarVehiculo ingresarVehiculo = new IngresarVehiculo();
+	private RetirarVehiculo retirarVehiculo = new RetirarVehiculo();
 
 	/**
 	 * Launch the application.
@@ -78,8 +79,8 @@ public class App extends JFrame {
 		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				retirarVehiculo.setVisible(false);
 				setBounds(100, 100, 1000, 550);
-				ingresarVehiculo = new IngresarVehiculo();
 				ingresarVehiculo.setVisible(true);
 				getContentPane().add(ingresarVehiculo);				
 			}
@@ -90,6 +91,14 @@ public class App extends JFrame {
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ingresarVehiculo.setVisible(false);
+				setBounds(100, 100, 1000, 550);
+				retirarVehiculo.setVisible(true);
+				getContentPane().add(retirarVehiculo);
+			}
+		});
 		btnNewButton_1.setAlignmentY(Component.TOP_ALIGNMENT);
 		btnNewButton_1.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_1.setForeground(SystemColor.textHighlight);

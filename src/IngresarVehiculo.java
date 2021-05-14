@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
+import javax.swing.DefaultComboBoxModel;
 
 public class IngresarVehiculo extends JPanel {
 	private JTextField textField;
@@ -34,6 +35,7 @@ public class IngresarVehiculo extends JPanel {
 		JLabel lblNewLabel_2 = new JLabel("Tipo Vehiculo");
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"prueba", "test ", "auto", "moto"}));
 		
 		JButton btnNewButton = new JButton("Registrar");
 		btnNewButton.setBackground(new Color(255, 69, 0));

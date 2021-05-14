@@ -27,6 +27,8 @@ public class RetirarVehiculo extends JPanel {
 		placa.setBounds(205, 236, 177, 20);
 		placa.setColumns(10);
 		add(placa);
+		
+		setBounds(282, 0, 695, 505);
 
 		JLabel label_placa = new JLabel("Placa");
 		label_placa.setFont(new Font("Century Gothic", Font.PLAIN, 12));
