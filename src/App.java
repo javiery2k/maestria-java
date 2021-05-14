@@ -57,58 +57,68 @@ public class App extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Parking v1.0");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Century Gothic", Font.BOLD, 27));
-		lblNewLabel.setBounds(65, 87, 160, 34);
-		panel.add(lblNewLabel);
+		JLabel label_titulo = new JLabel("Parking v1.0");
+		label_titulo.setForeground(Color.WHITE);
+		label_titulo.setFont(new Font("Century Gothic", Font.BOLD, 27));
+		label_titulo.setBounds(65, 87, 160, 34);
+		panel.add(label_titulo);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(App.class.getResource("/assets/parking-logo.png")));
-		lblNewLabel_1.setBounds(80, 174, 128, 128);
-		panel.add(lblNewLabel_1);
+		JLabel icon_logo = new JLabel("");
+		icon_logo.setIcon(new ImageIcon(App.class.getResource("/assets/parking-logo.png")));
+		icon_logo.setBounds(80, 174, 128, 128);
+		panel.add(icon_logo);
 		
-		JButton btnNewButton = new JButton("Ingresar Vehiculo");
-		btnNewButton.setForeground(SystemColor.textHighlight);
-		btnNewButton.setBounds(27, 369, 115, 60);
-		panel.add(btnNewButton);
+		JButton btn_ingresar = new JButton("INGREGAR");
+		btn_ingresar.setForeground(SystemColor.textHighlight);
+		btn_ingresar.setBounds(27, 369, 115, 60);
+		panel.add(btn_ingresar);
 		
-		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
-		btnNewButton_1.setForeground(SystemColor.textHighlight);
-		btnNewButton_1.setBounds(148, 369, 115, 60);
-		panel.add(btnNewButton_1);
+		JButton btn_retirar = new JButton("RETIRAR");
+		btn_retirar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_retirar.setForeground(SystemColor.textHighlight);
+		btn_retirar.setBounds(148, 369, 115, 60);
+		panel.add(btn_retirar);
 		
-		JButton btnNewButton_2 = new JButton("Salir");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btn_salir = new JButton("SALIR");
+		btn_salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		btnNewButton_2.setForeground(SystemColor.textHighlight);
-		btnNewButton_2.setBounds(148, 435, 115, 60);
-		panel.add(btnNewButton_2);
+		btn_salir.setForeground(SystemColor.textHighlight);
+		btn_salir.setBounds(148, 435, 115, 60);
+		panel.add(btn_salir);
 		
-		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
-		btnNewButton_3.setForeground(SystemColor.textHighlight);
-		btnNewButton_3.setBounds(27, 435, 115, 60);
-		panel.add(btnNewButton_3);
+		JButton btn_listar = new JButton("LISTAR");
+		btn_listar.setForeground(SystemColor.textHighlight);
+		btn_listar.setBounds(27, 435, 115, 60);
+		panel.add(btn_listar);
+		
+		JLabel label_opciones = new JLabel("OPCIONES");
+		label_opciones.setForeground(Color.WHITE);
+		label_opciones.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		label_opciones.setBounds(95, 335, 92, 23);
+		panel.add(label_opciones);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setVisible(false);
-		panel_2.setBounds(286, 0, 1, 513);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
+		JPanel panel_secundario1 = new JPanel();
+		panel_secundario1.setVisible(false);
+		panel_secundario1.setBounds(286, 0, 1, 513);
+		contentPane.add(panel_secundario1);
+		panel_secundario1.setLayout(null);
 		
-		JPanel panel_2_1 = new JPanel();
-		panel_2_1.setLayout(null);
-		panel_2_1.setVisible(false);
-		panel_2_1.setBounds(0, 0, 700, 513);
-		contentPane.add(panel_2_1);
+		JPanel panel_secundario2 = new JPanel();
+		panel_secundario2.setLayout(null);
+		panel_secundario2.setVisible(false);
+		panel_secundario2.setBounds(0, 0, 700, 513);
+		contentPane.add(panel_secundario2);
 		
-		JPanel panel_2_2 = new JPanel();
-		panel_2_2.setLayout(null);
-		panel_2_2.setVisible(false);
-		panel_2_2.setBounds(0, 0, 700, 513);
-		contentPane.add(panel_2_2);
+		JPanel panel_secundario3 = new JPanel();
+		panel_secundario3.setLayout(null);
+		panel_secundario3.setVisible(false);
+		panel_secundario3.setBounds(0, 0, 700, 513);
+		contentPane.add(panel_secundario3);
 	}
 }

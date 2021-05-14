@@ -84,38 +84,38 @@ public class Login extends JFrame {
 		/**
 		 * Etiquetas
 		 */
-		JLabel lblNewLabel_2 = new JLabel("Parking 1.0");
-		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2.setForeground(color2);
-		lblNewLabel_2.setBounds(120, 259, 84, 21);
-		panel.add(lblNewLabel_2);
+		JLabel label_version = new JLabel("Parking 1.0");
+		label_version.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		label_version.setForeground(color2);
+		label_version.setBounds(120, 259, 84, 21);
+		panel.add(label_version);
 
-		JLabel lblNewLabel_2_1 = new JLabel("SISTEMA DE ESTACIONAMIENTOS");
-		lblNewLabel_2_1.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2_1.setForeground(new Color(42, 88, 173));
-		lblNewLabel_2_1.setBounds(43, 234, 252, 21);
-		panel.add(lblNewLabel_2_1);
+		JLabel label_titulo = new JLabel("SISTEMA DE ESTACIONAMIENTOS");
+		label_titulo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		label_titulo.setForeground(new Color(42, 88, 173));
+		label_titulo.setBounds(43, 234, 252, 21);
+		panel.add(label_titulo);
 
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/assets/parking-icon-150.png")));
 		lblNewLabel_3.setBounds(84, 59, 150, 151);
 		panel.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_2_1_1 = new JLabel("Todos los derechos reservados 2021");
-		lblNewLabel_2_1_1.setForeground(new Color(42, 88, 173));
-		lblNewLabel_2_1_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
-		lblNewLabel_2_1_1.setBounds(81, 288, 173, 14);
-		panel.add(lblNewLabel_2_1_1);
+		JLabel label_copyright = new JLabel("Todos los derechos reservados 2021");
+		label_copyright.setForeground(new Color(42, 88, 173));
+		label_copyright.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		label_copyright.setBounds(81, 288, 173, 14);
+		panel.add(label_copyright);
 
 		/**
 		 * Mensaje de Validacion
 		 */
-		JLabel lblNewLabel_4 = new JLabel("Las Credenciales no coinciden");
-		lblNewLabel_4.setFont(new Font("Century Gothic", Font.PLAIN, 12));
-		lblNewLabel_4.setVisible(false);
-		lblNewLabel_4.setForeground(Color.WHITE);
-		lblNewLabel_4.setBounds(73, 186, 191, 14);
-		panel_1.add(lblNewLabel_4);
+		JLabel label_errores = new JLabel("Las Credenciales no coinciden");
+		label_errores.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		label_errores.setVisible(false);
+		label_errores.setForeground(Color.WHITE);
+		label_errores.setBounds(73, 186, 191, 14);
+		panel_1.add(label_errores);
 
 		/**
 		 * Campo de Usuario
@@ -142,23 +142,23 @@ public class Login extends JFrame {
 		/**
 		 * Logos. estamos usando el path relativo a la clase
 		 */
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/assets/username-icon.png")));
-		lblNewLabel.setBounds(31, 101, 32, 32);
-		panel_1.add(lblNewLabel);
+		JLabel icon_username = new JLabel("");
+		icon_username.setIcon(new ImageIcon(Login.class.getResource("/assets/username-icon.png")));
+		icon_username.setBounds(31, 101, 32, 32);
+		panel_1.add(icon_username);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/assets/password-icon.png")));
-		lblNewLabel_1.setBounds(31, 146, 32, 32);
-		panel_1.add(lblNewLabel_1);
+		JLabel icon_password = new JLabel("");
+		icon_password.setIcon(new ImageIcon(Login.class.getResource("/assets/password-icon.png")));
+		icon_password.setBounds(31, 146, 32, 32);
+		panel_1.add(icon_password);
 
 		/**
 		 * Boton de Entrar
 		 */
-		JButton btnNewButton = new JButton("Entrar");
-		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_entrar = new JButton("Entrar");
+		btn_entrar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btn_entrar.setForeground(Color.WHITE);
+		btn_entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Obtenemos los valores ingresados
 				String user = textField.getText();
@@ -179,34 +179,34 @@ public class Login extends JFrame {
 						app.setVisible(true);
 
 					} else {
-						lblNewLabel_4.setVisible(true);
+						label_errores.setVisible(true);
 					}
 				} else {
-					lblNewLabel_4.setVisible(true);
+					label_errores.setVisible(true);
 				}
 
 			}
 		});
-		btnNewButton.setBorder(new LineBorder(Color.WHITE));
-		btnNewButton.setBackground(color2);
-		btnNewButton.setBounds(73, 226, 89, 23);
-		panel_1.add(btnNewButton);
+		btn_entrar.setBorder(new LineBorder(Color.WHITE));
+		btn_entrar.setBackground(color2);
+		btn_entrar.setBounds(73, 226, 89, 23);
+		panel_1.add(btn_entrar);
 
 		/**
 		 * Boton de Salir
 		 */
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		btnSalir.addActionListener(new ActionListener() {
+		JButton btn_salir = new JButton("Salir");
+		btn_salir.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btn_salir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		btnSalir.setBorder(new LineBorder(Color.WHITE));
-		btnSalir.setBackground(color2);
-		btnSalir.setForeground(Color.WHITE);
-		btnSalir.setBounds(175, 226, 89, 23);
-		panel_1.add(btnSalir);
+		btn_salir.setBorder(new LineBorder(Color.WHITE));
+		btn_salir.setBackground(color2);
+		btn_salir.setForeground(Color.WHITE);
+		btn_salir.setBounds(175, 226, 89, 23);
+		panel_1.add(btn_salir);
 
 	}
 }

@@ -1,85 +1,102 @@
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.Dimension;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class IngresarVehiculo extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField placa;
+	private JTextField propietario;
 
 	/**
 	 * Create the panel.
 	 */
 	public IngresarVehiculo() {
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Placa");
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombre Propietario");
-		
-		JLabel lblNewLabel_2 = new JLabel("Tipo Vehiculo");
-		
-		JComboBox comboBox = new JComboBox();
-		
-		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.setBackground(new Color(255, 69, 0));
-		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(171)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addComponent(lblNewLabel_1))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(202)
-							.addComponent(lblNewLabel))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(187)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(10)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(btnNewButton)
-									.addComponent(lblNewLabel_2)))))
-					.addContainerGap(167, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addComponent(lblNewLabel)
-					.addGap(18)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblNewLabel_1)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblNewLabel_2)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
-					.addComponent(btnNewButton)
-					.addContainerGap(54, Short.MAX_VALUE))
-		);
-		setLayout(groupLayout);
 
+		placa = new JTextField();
+		placa.setBounds(128, 134, 347, 20);
+		placa.setColumns(10);
+		add(placa);
+
+		JLabel label_placa = new JLabel("Placa");
+		label_placa.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		label_placa.setBounds(52, 135, 33, 17);
+		add(label_placa);
+
+		propietario = new JTextField();
+		propietario.setBounds(196, 183, 280, 20);
+		propietario.setColumns(10);
+		add(propietario);
+
+		JLabel label_propietario = new JLabel("Nombre Propietario");
+		label_propietario.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		label_propietario.setBounds(52, 184, 113, 16);
+		add(label_propietario);
+
+		JLabel label_tipo = new JLabel("Tipo Vehiculo");
+		label_tipo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		label_tipo.setBounds(52, 231, 79, 16);
+		add(label_tipo);
+
+		JComboBox<Object> tipo_vehiculo = new JComboBox<Object>();
+		tipo_vehiculo.setModel(new DefaultComboBoxModel<Object>(new String[] { "SEDAN", "SUV", "MOTOCICLETA" }));
+		tipo_vehiculo.setSelectedIndex(1);
+		tipo_vehiculo.setBounds(184, 229, 291, 22);
+		add(tipo_vehiculo);
+
+		JLabel label_titulo = new JLabel("Ingresando el Vehiculo al Sistema");
+		label_titulo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		label_titulo.setForeground(new Color(42, 88, 173));
+		label_titulo.setBounds(128, 55, 269, 21);
+		add(label_titulo);
+
+		JLabel label_version = new JLabel("Parking 1.0");
+		label_version.setForeground(new Color(42, 88, 173));
+		label_version.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		label_version.setBounds(392, 449, 84, 21);
+		add(label_version);
+
+		JLabel label_comentario = new JLabel("Comentario");
+		label_comentario.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		label_comentario.setBounds(52, 288, 79, 16);
+		add(label_comentario);
+
+		JTextArea comentario = new JTextArea();
+		comentario.setBounds(174, 285, 301, 85);
+		add(comentario);
+
+		JButton btn_registrar = new JButton("Registrar");
+		btn_registrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// Hacemos nuestra coneccion de BD
+				AppConection conn = new AppConection();
+				// Leemos los campos
+				String field1 = placa.getText();
+				String field2 = propietario.getText();
+				String field3 = tipo_vehiculo.getSelectedItem().toString();
+				String field4 = comentario.getText();
+
+				conn.insertar(field1, field2, field3, field4, "INGRESO");
+			}
+		});
+		btn_registrar.setBounds(210, 402, 122, 39);
+		btn_registrar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btn_registrar.setForeground(Color.WHITE);
+		btn_registrar.setBorder(new LineBorder(Color.WHITE));
+		btn_registrar.setBackground(new Color(42, 88, 173));
+		add(btn_registrar);
+		setLayout(null);
 	}
 }
