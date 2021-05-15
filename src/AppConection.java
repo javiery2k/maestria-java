@@ -31,7 +31,6 @@ public class AppConection {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
 		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
-		// System.out.println(path);
 		this.conectar();
 	}
 
@@ -100,6 +99,22 @@ public class AppConection {
 		return false;
 	}
 
+	public boolean placaEsValida(String placa) {
+		try {
+			String sql1 = "SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'";
+			PreparedStatement pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, placa);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Error, sus datos no fueron ingresados\n" + sqle);
+		}
+		return false;
+	}
 	// Retirar Vehiculo
 
 	public double retirarVehiculo(String placa) {
@@ -110,13 +125,13 @@ public class AppConection {
 		String fechaHora = dateFormat.format(date);
 		try {
 			// Preparamamos el primer Query
-			
+
 			String sql1 = "SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'";
 			PreparedStatement pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, placa);
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {				
+			if (rs.next()) {
 				String horaSalida = rs.getString("HORAENTRADA");
 				Date horasalida = dateFormat.parse(horaSalida);
 				int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
@@ -127,26 +142,26 @@ public class AppConection {
 				} else if (rs.getString(2).equals("MOTOCICLETA")) {
 					valorAPagar = minuntosACobrar * 0.02;
 				}
-				
+
 				// Preparamamos el Update
 				String sql = "UPDATE DATA SET HORASALIDA=?, ESTADO='No Disponible', ValorPagado=? WHERE PLACA=? AND ESTADO='Disponible'";
 				PreparedStatement pstmt1 = conn.prepareStatement(sql);
 				pstmt1.setString(1, fechaHora);
 				pstmt1.setDouble(2, valorAPagar);
 				pstmt1.setString(3, placa);
-								
+
 				// Ejecutamos el Query
 				int i = pstmt1.executeUpdate(); // insert, delete, update
 				if (i > 0) {
-					System.out.println("SQL OK");			
+					System.out.println("SQL OK");
 				} else {
 					System.out.println("SQL FALLIDO");
-				}		
+				}
 				pstmt.close();
 				conn.close();
 				return valorAPagar;
 			} else {
-				JOptionPane.showMessageDialog(null, "La placa no fue encontrada en el sistema.");
+				return 10000;
 			}
 
 		} catch (Exception e) {
