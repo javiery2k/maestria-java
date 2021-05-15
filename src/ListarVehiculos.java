@@ -34,12 +34,12 @@ public class ListarVehiculos extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(10, 180, 671, 211);
+		panel.setBounds(10, 203, 671, 188);
 		add(panel);
 		panel.setLayout(null);
 		tabla1=new JTable(data,column);
 		JScrollPane scrollPane_1 = new JScrollPane(tabla1);
-		scrollPane_1.setBounds(10, 11, 651, 189);
+		scrollPane_1.setBounds(2, 2, 665, 183);
 		panel.add(scrollPane_1);
 		
 		
@@ -75,50 +75,50 @@ public class ListarVehiculos extends JPanel {
 		
 		textField = new JTextField();
 		textField.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField.setBounds(30, 67, 150, 40);
+		textField.setBounds(30, 78, 150, 40);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_1.setBounds(222, 67, 150, 40);
+		textField_1.setBounds(213, 78, 150, 40);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_2.setBounds(416, 67, 150, 40);
+		textField_2.setBounds(416, 78, 150, 40);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Fecha");
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btnNewButton.setBounds(589, 67, 78, 39);
+		btnNewButton.setBounds(589, 78, 78, 39);
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox.setBounds(177, 139, 100, 22);
+		comboBox.setBounds(180, 170, 100, 22);
 		add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox_1.setBounds(403, 139, 100, 22);
+		comboBox_1.setBounds(405, 170, 100, 22);
 		add(comboBox_1);
 		
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoVehiculo.setForeground(SystemColor.textHighlight);
 		lblTipoVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblTipoVehiculo.setBounds(167, 118, 113, 20);
+		lblTipoVehiculo.setBounds(167, 139, 113, 20);
 		add(lblTipoVehiculo);
 		
 		JLabel lblUbicacionVehiculo = new JLabel("Ubicaci\u00F3n del Vehiculo");
 		lblUbicacionVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacionVehiculo.setForeground(SystemColor.textHighlight);
 		lblUbicacionVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblUbicacionVehiculo.setBounds(364, 118, 202, 20);
+		lblUbicacionVehiculo.setBounds(364, 139, 202, 20);
 		add(lblUbicacionVehiculo);
 		
 		JButton btnNewButton_1 = new JButton("Buscar");

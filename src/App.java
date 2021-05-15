@@ -80,6 +80,7 @@ public class App extends JFrame {
 		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listarVehiculos.setVisible(false);
 				retirarVehiculo.setVisible(false);
 				setBounds(100, 100, 1000, 550);
 				ingresarVehiculo.setVisible(true);
@@ -133,7 +134,7 @@ public class App extends JFrame {
 		btnNewButton_2.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				System.exit(EXIT_ON_CLOSE);
 			}
 		});
 		btnNewButton_2.setForeground(SystemColor.textHighlight);
