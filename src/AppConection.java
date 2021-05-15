@@ -168,6 +168,17 @@ public class AppConection {
 	public String[] listar(String estado, String tipovehiculo, String placa, String propietario, String fecha) {
 
 		try {
+			
+			//progressbar: Cantidad de Registros a Devolver
+			String sql="SELECT COUNT(*) FROM DATA WHERE ESTADO=? AND TIPOVEHICULO LIKE ? AND PLACA LIKE ?  AND PROPIETARIO LIKE  ?  AND HORAENTRADA LIKE  ? ";
+			PreparedStatement pstmt2 = conn.prepareStatement(sql);
+			ResultSet rs2=pstmt2.executeQuery(sql);
+			int row=0;
+			while((rs2.next())) {
+			row=rs2.getInt("COUNT(*)");
+			}
+			
+			//Listar
 			String query= "SELECT * FROM DATA WHERE ESTADO=? AND TIPOVEHICULO LIKE ? AND PLACA LIKE ?  AND PROPIETARIO LIKE  ?  AND HORAENTRADA LIKE  ? ";
 			PreparedStatement pstmt = conn.prepareStatement(query);
 						
@@ -178,14 +189,15 @@ public class AppConection {
 			pstmt.setString(5, "%" + fecha + "%");
 
 			ResultSet rs = pstmt.executeQuery(query);
-
+			
 			rs.first();
 
             do {
-                String horasalida = rs.getString("HORASALIDA");
+                
+            	String horasalida = rs.getString("HORASALIDA");
                 String pago = rs.getString("VALORPAGADO");
                 if (horasalida == null) {
-                    horasalida = "No ha salido";
+                    horasalida = "No ha salido del Parking";
                     pago = "0";
                 } else {
                     horasalida = rs.getString("HORASALIDA").substring(10).substring(0,6);
@@ -194,6 +206,7 @@ public class AppConection {
                 String[] fila = {rs.getString("Id"), rs.getString("PLACA"), rs.getString("PROPIETARIO"), rs.getString("TIPOVEHICULO"), rs.getString("HORAENTRADA").substring(10).substring(0, 6), horasalida, "$" + pago};
                                
                 return fila;
+                
             } while (rs.next());
 
 		} catch (Exception e) {
