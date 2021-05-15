@@ -19,27 +19,33 @@ public class ListarVehiculos extends JPanel {
 	public ListarVehiculos() {
 		setLayout(null);
 		
+		String data[][]={ {"101","Amit","670000"},    
+                {"102","Jai","780000"},    
+                {"101","Sachin","700000"}};    
+		String column[]={"ID","NAME","SALARY"}; 
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBounds(10, 200, 430, 151);
 		add(panel);
 		
-		table = new JTable();
+		table = new JTable(data,column);
+		 table.setBounds(30,40,200,300);
 		panel.add(table);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("Buscar Vehiculo");
 		lblNewLabel.setBounds(203, 11, 46, 14);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("Placa");
 		lblNewLabel_1.setBounds(43, 52, 46, 14);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Propietario");
 		lblNewLabel_2.setBounds(157, 52, 46, 14);
 		add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
+		JLabel lblNewLabel_3 = new JLabel("Fecha");
 		lblNewLabel_3.setBounds(273, 52, 46, 14);
 		add(lblNewLabel_3);
 		
@@ -70,13 +76,13 @@ public class ListarVehiculos extends JPanel {
 		comboBox_1.setBounds(374, 139, 30, 22);
 		add(comboBox_1);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(43, 120, 46, 14);
-		add(lblNewLabel_4);
+		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
+		lblTipoVehiculo.setBounds(43, 120, 69, 14);
+		add(lblTipoVehiculo);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(361, 114, 46, 14);
-		add(lblNewLabel_5);
+		JLabel lblUbicacionVehiculo = new JLabel("Ubicaci\u00F3n del Vehiculo");
+		lblUbicacionVehiculo.setBounds(295, 114, 104, 14);
+		add(lblUbicacionVehiculo);
 
 	}
 }
