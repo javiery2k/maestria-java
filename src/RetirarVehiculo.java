@@ -64,11 +64,12 @@ public class RetirarVehiculo extends JPanel {
 				// Leemos los campos
 				String field1 = placa.getText();
 				if (!field1.isEmpty()) {
-					Double total = conn.retirarVehiculo(field1);
-					System.out.println(total);
-					if (total > 0.0) {
-						JOptionPane.showMessageDialog(null, "Registro Ingresado");
-					} else {
+					
+					if(conn.placaEsValida(field1)) {
+						Double total = conn.retirarVehiculo(field1);
+						placa.setText("");
+						JOptionPane.showMessageDialog(null, "Valor a pagar:" + total);						
+					}else {
 						JOptionPane.showMessageDialog(null, "La placa no fue encontrada");
 					}
 				} else {
