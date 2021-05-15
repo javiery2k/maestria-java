@@ -18,10 +18,11 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField jdatepicket;
 	private JTable tabla1;
 
 	/**
@@ -91,12 +92,12 @@ public class ListarVehiculos extends JPanel {
 		add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_2.setBounds(416, 78, 150, 40);
-		add(textField_2);
-		textField_2.setColumns(10);
+		jdatepicket = new JTextField();
+		jdatepicket.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		jdatepicket.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		jdatepicket.setBounds(416, 78, 150, 40);
+		add(jdatepicket);
+		jdatepicket.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Fecha");
 		btnNewButton.addActionListener(new ActionListener() {
