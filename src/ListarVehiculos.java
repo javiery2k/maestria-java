@@ -78,18 +78,21 @@ public class ListarVehiculos extends JPanel {
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
+		textField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textField.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField.setBounds(30, 78, 150, 40);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField_1.setBounds(213, 78, 150, 40);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField_2.setBounds(416, 78, 150, 40);
 		add(textField_2);
@@ -102,48 +105,48 @@ public class ListarVehiculos extends JPanel {
 		});
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
-		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		btnNewButton.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnNewButton.setBounds(589, 78, 78, 39);
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "AUTOMOVIL", "MOTOCICLETA"}));
 		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox.setBounds(180, 170, 100, 22);
+		comboBox.setBounds(149, 152, 150, 40);
 		add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Parqueadero", "Fuera Parqueadero"}));
 		
 		comboBox_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox_1.setBounds(392, 170, 150, 22);
+		comboBox_1.setBounds(394, 152, 150, 40);
 		add(comboBox_1);
 		
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoVehiculo.setForeground(SystemColor.textHighlight);
 		lblTipoVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblTipoVehiculo.setBounds(167, 139, 113, 20);
+		lblTipoVehiculo.setBounds(167, 129, 113, 20);
 		add(lblTipoVehiculo);
 		
 		JLabel lblUbicacionVehiculo = new JLabel("Ubicaci\u00F3n del Vehiculo");
 		lblUbicacionVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacionVehiculo.setForeground(SystemColor.textHighlight);
 		lblUbicacionVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblUbicacionVehiculo.setBounds(364, 139, 202, 20);
+		lblUbicacionVehiculo.setBounds(364, 129, 202, 20);
 		add(lblUbicacionVehiculo);
 		
 		JButton btnNewButton_1 = new JButton("Buscar");
 		btnNewButton_1.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_1.setForeground(SystemColor.textHighlight);
-		btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		btnNewButton_1.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnNewButton_1.setBounds(167, 403, 132, 39);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Limpiar");
 		btnNewButton_2.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_2.setForeground(SystemColor.textHighlight);
-		btnNewButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		btnNewButton_2.setFont(new Font("Century Gothic", Font.BOLD, 14));
 		btnNewButton_2.setBounds(392, 403, 132, 39);
 		add(btnNewButton_2);
 		

@@ -74,7 +74,7 @@ public class IngresarVehiculo extends JPanel {
 		tipo_vehiculo.setModel(new DefaultComboBoxModel<Object>(new String[] { "","AUTOMOVIL", "MOTOCICLETA" }));
 
 		tipo_vehiculo.setSelectedIndex(0);
-		tipo_vehiculo.setBounds(484, 106, 100, 22);
+		tipo_vehiculo.setBounds(485, 101, 150, 40);
 		add(tipo_vehiculo);
 
 		JLabel label_titulo = new JLabel("Ingresando el Vehiculo al Sistema");
