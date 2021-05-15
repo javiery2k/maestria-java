@@ -78,6 +78,7 @@ public class App extends JFrame {
 		
 		
 		JButton btnNewButton = new JButton("Ingresar Vehiculo");
+		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,6 +97,7 @@ public class App extends JFrame {
 		//***************************************************
 		
 		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
+		btnNewButton_1.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listarVehiculos.setVisible(false);
@@ -133,6 +135,7 @@ public class App extends JFrame {
 		//****************************************************
 		
 		JButton btnNewButton_2 = new JButton("Salir");
+		btnNewButton_2.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_2.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
