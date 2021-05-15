@@ -34,12 +34,12 @@ public class ListarVehiculos extends JPanel {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(10, 172, 671, 219);
+		panel.setBounds(10, 180, 671, 211);
 		add(panel);
 		panel.setLayout(null);
 		tabla1=new JTable(data,column);
 		JScrollPane scrollPane_1 = new JScrollPane(tabla1);
-		scrollPane_1.setBounds(6, 16, 665, 203);
+		scrollPane_1.setBounds(10, 11, 651, 189);
 		panel.add(scrollPane_1);
 		
 		
@@ -63,14 +63,14 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setForeground(SystemColor.textHighlight);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(223, 47, 124, 20);
+		lblNewLabel_2.setBounds(239, 49, 124, 20);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha");
 		lblNewLabel_3.setForeground(SystemColor.textHighlight);
 		lblNewLabel_3.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(425, 47, 78, 20);
+		lblNewLabel_3.setBounds(452, 49, 78, 20);
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
@@ -81,20 +81,20 @@ public class ListarVehiculos extends JPanel {
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_1.setBounds(217, 67, 150, 40);
+		textField_1.setBounds(222, 67, 150, 40);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_2.setBounds(399, 67, 150, 40);
+		textField_2.setBounds(416, 67, 150, 40);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Fecha");
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btnNewButton.setBounds(559, 69, 122, 39);
+		btnNewButton.setBounds(589, 67, 78, 39);
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();

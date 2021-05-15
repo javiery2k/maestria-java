@@ -11,6 +11,8 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class IngresarVehiculo extends JPanel {
 	/**
@@ -62,9 +64,10 @@ public class IngresarVehiculo extends JPanel {
 		add(tipo_vehiculo);
 
 		JLabel label_titulo = new JLabel("Ingresando el Vehiculo al Sistema");
+		label_titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		label_titulo.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		label_titulo.setForeground(new Color(42, 88, 173));
-		label_titulo.setBounds(174, 48, 329, 26);
+		label_titulo.setForeground(SystemColor.textHighlight);
+		label_titulo.setBounds(172, 31, 370, 26);
 		add(label_titulo);
 
 		JLabel label_version = new JLabel("Parking 1.0");
