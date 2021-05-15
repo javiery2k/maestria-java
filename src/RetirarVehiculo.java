@@ -83,7 +83,7 @@ public class RetirarVehiculo extends JPanel {
 		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btn_retirar.setForeground(SystemColor.textHighlight);
 		btn_retirar.setBorder(UIManager.getBorder("CheckBox.border"));
-		btn_retirar.setBackground(new Color(42, 88, 173));
+		btn_retirar.setBackground(UIManager.getColor("Button.background"));
 		add(btn_retirar);
 		setLayout(null);
 	}
