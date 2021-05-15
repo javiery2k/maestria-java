@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class IngresarVehiculo extends JPanel {
 	/**
@@ -126,7 +127,7 @@ public class IngresarVehiculo extends JPanel {
 		btn_registrar.setBounds(306, 403, 122, 39);
 		btn_registrar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		btn_registrar.setForeground(SystemColor.textHighlight);
-		btn_registrar.setBorder(new LineBorder(Color.WHITE));
+		btn_registrar.setBorder(UIManager.getBorder("CheckBox.border"));
 		btn_registrar.setBackground(new Color(42, 88, 173));
 		add(btn_registrar);
 		setLayout(null);

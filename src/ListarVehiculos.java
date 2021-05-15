@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
@@ -94,6 +96,10 @@ public class ListarVehiculos extends JPanel {
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Fecha");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -128,12 +134,14 @@ public class ListarVehiculos extends JPanel {
 		add(lblUbicacionVehiculo);
 		
 		JButton btnNewButton_1 = new JButton("Buscar");
+		btnNewButton_1.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_1.setForeground(SystemColor.textHighlight);
 		btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(167, 403, 132, 39);
 		add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Limpiar");
+		btnNewButton_2.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_2.setForeground(SystemColor.textHighlight);
 		btnNewButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(392, 403, 132, 39);

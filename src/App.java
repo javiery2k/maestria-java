@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.Insets;
 import java.awt.Component;
+import javax.swing.UIManager;
 
 public class App extends JFrame {
 	Color color1 = new Color(234, 238, 241);
@@ -113,6 +114,7 @@ public class App extends JFrame {
 		//****************************************************
 		
 		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
+		btnNewButton_3.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				retirarVehiculo.setVisible(false);

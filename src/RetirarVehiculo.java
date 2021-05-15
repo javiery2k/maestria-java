@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class RetirarVehiculo extends JPanel {
 	/**
@@ -80,8 +81,8 @@ public class RetirarVehiculo extends JPanel {
 		});
 		btn_retirar.setBounds(286, 301, 122, 39);
 		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btn_retirar.setForeground(Color.WHITE);
-		btn_retirar.setBorder(new LineBorder(Color.WHITE));
+		btn_retirar.setForeground(SystemColor.textHighlight);
+		btn_retirar.setBorder(UIManager.getBorder("CheckBox.border"));
 		btn_retirar.setBackground(new Color(42, 88, 173));
 		add(btn_retirar);
 		setLayout(null);
