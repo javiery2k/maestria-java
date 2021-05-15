@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 
 public class RetirarVehiculo extends JPanel {
 	/**
@@ -28,6 +29,7 @@ public class RetirarVehiculo extends JPanel {
 	public RetirarVehiculo() {
 
 		placa = new JTextField();
+		placa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		placa.setBounds(267, 219, 177, 40);
 		placa.setColumns(10);
@@ -83,7 +85,7 @@ public class RetirarVehiculo extends JPanel {
 		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btn_retirar.setForeground(SystemColor.textHighlight);
 		btn_retirar.setBorder(UIManager.getBorder("CheckBox.border"));
-		btn_retirar.setBackground(new Color(42, 88, 173));
+		btn_retirar.setBackground(UIManager.getColor("Button.background"));
 		add(btn_retirar);
 		setLayout(null);
 	}

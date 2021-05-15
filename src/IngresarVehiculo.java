@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 
 public class IngresarVehiculo extends JPanel {
 	/**
@@ -34,6 +35,7 @@ public class IngresarVehiculo extends JPanel {
 		setBounds(282, 0, 695, 505);
 
 		placa = new JTextField();
+		placa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		placa.setBounds(175, 100, 150, 40);
 		placa.setColumns(10);
@@ -47,6 +49,7 @@ public class IngresarVehiculo extends JPanel {
 		add(lblPlaca);
 
 		propietario = new JTextField();
+		propietario.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		propietario.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		propietario.setBounds(223, 191, 301, 40);
 		propietario.setColumns(10);
@@ -67,9 +70,9 @@ public class IngresarVehiculo extends JPanel {
 		add(lblTipoVehiculo);
 
 		JComboBox<Object> tipo_vehiculo = new JComboBox<Object>();
-		tipo_vehiculo.setModel(new DefaultComboBoxModel<Object>(new String[] { "SEDAN", "SUV", "MOTOCICLETA" }));
+		tipo_vehiculo.setModel(new DefaultComboBoxModel(new String[] {"", "AUTOMOVIL", "MOTOCICLETA"}));
 		tipo_vehiculo.setSelectedIndex(0);
-		tipo_vehiculo.setBounds(482, 101, 100, 40);
+		tipo_vehiculo.setBounds(486, 110, 150, 22);
 		add(tipo_vehiculo);
 
 		JLabel label_titulo = new JLabel("Ingresando el Vehiculo al Sistema");
@@ -93,6 +96,7 @@ public class IngresarVehiculo extends JPanel {
 		add(lblComentario);
 
 		JTextArea comentario = new JTextArea();
+		comentario.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		comentario.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		comentario.setBounds(223, 276, 301, 85);
 		add(comentario);
@@ -128,7 +132,7 @@ public class IngresarVehiculo extends JPanel {
 		btn_registrar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		btn_registrar.setForeground(SystemColor.textHighlight);
 		btn_registrar.setBorder(UIManager.getBorder("CheckBox.border"));
-		btn_registrar.setBackground(new Color(42, 88, 173));
+		btn_registrar.setBackground(UIManager.getColor("Button.background"));
 		add(btn_registrar);
 		setLayout(null);
 	}

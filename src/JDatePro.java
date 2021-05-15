@@ -6,17 +6,19 @@ import javax.swing.border.BevelBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import org.jdatepicker.impl.JDatePickerImpl;
+import java.awt.Rectangle;
 
 public class JDatePro extends JPanel {
 	private JDatePickerImpl datePicker;
+	private String dateText;
 
 	/**
 	 * Create the panel.
 	 */
 	public JDatePro() {
-		setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		this.setBounds(0, 0, 210, 30);
 		UtilDateModel model = new UtilDateModel();
-		model.setDate(2021, 05, 01);
+		model.setDate(2021, 04, 01);
 		model.setSelected(true);
 		Properties p = new Properties();
 		p.put("text.day", "Hoy");
@@ -25,7 +27,10 @@ public class JDatePro extends JPanel {
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);		
 		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 		this.add(datePicker);
-		System.out.println(datePicker.getJFormattedTextField().getText());
+		dateText=datePicker.getJFormattedTextField().getText();
 	}
 
+	protected String getDate() {
+		return dateText;
+	}
 }

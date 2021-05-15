@@ -27,6 +27,16 @@ public class ListarVehiculos extends JPanel {
 	private JTextField textField_1;
 	private JTable tabla1;
 
+	
+	
+	public String[][] listarVehiculo(){
+		
+		String filas [][] = {{"101","AG1234","IVAN","SUV","12:30","1:25","0.30"},    
+                {"102","AG1234","JAVIER","SEDAN","12:30","1:25","0.20"},    
+                {"103","AG1234","MEDINA","MOTOCICLETA","12:30","1:25","0.10"}};
+	return filas;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -36,11 +46,12 @@ public class ListarVehiculos extends JPanel {
 		setLayout(null);
 		setBounds(282, 0, 695, 505);
 		
-		String data[][]={ {"101","AG1234","IVAN","SUV","12:30","1:25","0.30"},    
+		String data[][]={{"101","AG1234","IVAN","SUV","12:30","1:25","0.30"},    
                 {"102","AG1234","JAVIER","SEDAN","12:30","1:25","0.20"},    
                 {"103","AG1234","MEDINA","MOTOCICLETA","12:30","1:25","0.10"}};    
 		String column[]={"ID","PLACA","PROPIETARIO","TIPOVEHICULO","HORAENTRADA","HORASALIDA","PAGO"}; 
 		
+		//Se Crea la Tabla
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBounds(10, 203, 671, 188);
@@ -83,12 +94,14 @@ public class ListarVehiculos extends JPanel {
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
+		textField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textField.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField.setBounds(30, 78, 150, 40);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textField_1.setBounds(213, 78, 150, 40);
 		add(textField_1);
@@ -122,6 +135,12 @@ public class ListarVehiculos extends JPanel {
 		add(lblUbicacionVehiculo);
 		
 		JButton btnNewButton_1 = new JButton("Buscar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabla1.getModel().setValueAt("prueba", 1, 1);
+				
+			}
+		});
 		btnNewButton_1.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton_1.setForeground(SystemColor.textHighlight);
 		btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -151,6 +170,12 @@ public class ListarVehiculos extends JPanel {
 		label_version.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		label_version.setBounds(601, 473, 84, 21);
 		add(label_version);
+		
+		//Agregamos el Componente de Fecha
+		JDatePro jdate = new JDatePro();
+		jdate.setBounds(400, 78, 210, 40);
+		add(jdate);
+		System.out.println("Fecha"+jdate.getDate());
 		
 	}
 }
