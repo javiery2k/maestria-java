@@ -19,7 +19,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-public class AppConection<user> {
+public class AppConection {
 	Connection conn;
 	String driver;
 	String path;
@@ -31,7 +31,7 @@ public class AppConection<user> {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
 		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
-		System.out.println(path);
+		//System.out.println(path);
 		this.conectar();
 	}
 
@@ -114,6 +114,7 @@ public class AppConection<user> {
 			String query;
 			query = ("SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'");
 			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, placa);
 			ResultSet rs = pstmt.executeQuery();
 			rs.first();
 			String horaSalida = rs.getString(1);
@@ -143,11 +144,11 @@ public class AppConection<user> {
 			if (i > 0) {
 				System.out.println("SQL OK");
 				//return true;
-				return valorAPagar;
+				//return valorAPagar;
 			} else {
 				System.out.println("SQL FALLIDO");
 				//return false;
-				return 0.0;
+				//return 0.0;
 			}
 		} catch (Exception e) {
 			System.out.println("error en la modificacion: " + e.toString());
@@ -178,9 +179,8 @@ public class AppConection<user> {
 	 */
 	public static void main(String[] args) {
 		AppConection c = new AppConection();
-
 		// c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
-		c.retirarVehiculo("AK0697");
+		//c.retirarVehiculo("AG4617");
 	}
 
 }
