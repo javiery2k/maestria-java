@@ -26,23 +26,25 @@ public class RetirarVehiculo extends JPanel {
 	public RetirarVehiculo() {
 
 		placa = new JTextField();
-		placa.setBounds(299, 153, 177, 45);
+		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		placa.setBounds(273, 153, 177, 40);
 		placa.setColumns(10);
 		add(placa);
 		
 		setBounds(282, 0, 695, 505);
 
 		JLabel label_placa = new JLabel("Placa");
+		label_placa.setForeground(SystemColor.textHighlight);
 		label_placa.setHorizontalAlignment(SwingConstants.CENTER);
 		label_placa.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		label_placa.setBounds(211, 166, 65, 32);
+		label_placa.setBounds(181, 156, 65, 32);
 		add(label_placa);
 
 		JLabel lblModuloDeSalida = new JLabel("Modulo de Salida del Vehiculo");
 		lblModuloDeSalida.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModuloDeSalida.setFont(new Font("Century Gothic", Font.PLAIN, 22));
 		lblModuloDeSalida.setForeground(SystemColor.textHighlight);
-		lblModuloDeSalida.setBounds(167, 82, 328, 28);
+		lblModuloDeSalida.setBounds(157, 82, 402, 28);
 		add(lblModuloDeSalida);
 
 		JLabel label_version = new JLabel("Parking 1.0");
@@ -64,7 +66,7 @@ public class RetirarVehiculo extends JPanel {
 				//conn.insertar(field1, field2, field3, field4, "INGRESO");
 			}
 		});
-		btn_retirar.setBounds(300, 238, 122, 39);
+		btn_retirar.setBounds(296, 235, 122, 39);
 		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btn_retirar.setForeground(SystemColor.textHighlight);
 		btn_retirar.setBorder(new LineBorder(Color.WHITE));

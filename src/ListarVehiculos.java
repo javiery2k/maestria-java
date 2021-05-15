@@ -11,6 +11,8 @@ import javax.swing.JProgressBar;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import java.awt.SystemColor;
+import javax.swing.JTextPane;
 
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
@@ -44,35 +46,45 @@ public class ListarVehiculos extends JPanel {
 		//panel.add(table);
 		
 		JLabel lblNewLabel = new JLabel("Buscar Vehiculo");
+		lblNewLabel.setForeground(SystemColor.textHighlight);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(203, 11, 257, 14);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+		lblNewLabel.setBounds(213, 8, 257, 30);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Placa");
-		lblNewLabel_1.setBounds(83, 52, 46, 14);
+		lblNewLabel_1.setForeground(SystemColor.textHighlight);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(57, 36, 69, 20);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Propietario");
-		lblNewLabel_2.setBounds(253, 52, 74, 14);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setForeground(SystemColor.textHighlight);
+		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblNewLabel_2.setBounds(223, 36, 124, 20);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha");
-		lblNewLabel_3.setBounds(453, 52, 46, 14);
+		lblNewLabel_3.setForeground(SystemColor.textHighlight);
+		lblNewLabel_3.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(433, 36, 78, 20);
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
-		textField.setBounds(26, 77, 150, 20);
+		textField.setBounds(24, 67, 150, 40);
 		add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(203, 77, 150, 20);
+		textField_1.setBounds(217, 67, 150, 40);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(392, 77, 150, 20);
+		textField_2.setBounds(399, 67, 150, 40);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -81,19 +93,25 @@ public class ListarVehiculos extends JPanel {
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(59, 139, 30, 22);
+		comboBox.setBounds(177, 139, 100, 22);
 		add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(374, 139, 30, 22);
+		comboBox_1.setBounds(403, 139, 100, 22);
 		add(comboBox_1);
 		
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
-		lblTipoVehiculo.setBounds(43, 120, 69, 14);
+		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipoVehiculo.setForeground(SystemColor.textHighlight);
+		lblTipoVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblTipoVehiculo.setBounds(167, 118, 113, 20);
 		add(lblTipoVehiculo);
 		
 		JLabel lblUbicacionVehiculo = new JLabel("Ubicaci\u00F3n del Vehiculo");
-		lblUbicacionVehiculo.setBounds(295, 114, 104, 14);
+		lblUbicacionVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUbicacionVehiculo.setForeground(SystemColor.textHighlight);
+		lblUbicacionVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblUbicacionVehiculo.setBounds(399, 120, 104, 20);
 		add(lblUbicacionVehiculo);
 		
 		JButton btnNewButton_1 = new JButton("Buscar");
@@ -105,7 +123,7 @@ public class ListarVehiculos extends JPanel {
 		add(btnNewButton_2);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(239, 480, 285, 14);
+		progressBar.setBounds(239, 473, 285, 21);
 		add(progressBar);
 		
 		JLabel lblProgreso = new JLabel("Progreso:");
