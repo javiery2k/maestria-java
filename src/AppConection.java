@@ -23,8 +23,6 @@ public class AppConection<user> {
 	Connection conn;
 	String driver;
 	String path;
-	String FechaHora = "";
-	String Estado = "";
 
 	/**
 	 * 
@@ -67,32 +65,43 @@ public class AppConection<user> {
 
 	// Insertar
 
-	void insertar(String placa, String propietario, String tipovehiculo, String estado) {
+	public boolean insertar(String placa, String propietario, String tipovehiculo, String comentario, String estado) {
 		try {
 
 			PreparedStatement pstmt = conn.prepareStatement(
-					"INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, ESTADO) VALUES (?, ?, ?, ?, ?)");
+					"INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, COMENTARIO, ESTADO) VALUES (?, ?, ?, ?, ?, ?)");
 			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
 			Calendar cal = Calendar.getInstance();
 			Date date = cal.getTime();
-			FechaHora = dateFormat.format(date);
-			Estado = "Disponible";
+			String FechaHora = dateFormat.format(date);
+			String Estado = "Disponible";
 
 			pstmt.setString(1, placa);
 			pstmt.setString(2, propietario);
 			pstmt.setString(3, tipovehiculo);
 			pstmt.setString(4, FechaHora);
-			pstmt.setString(7, Estado);
+			pstmt.setString(5, comentario);
+			pstmt.setString(6, Estado);
 
-			pstmt.executeUpdate(); // insert, delete, update
-			JOptionPane.showMessageDialog(null, "Registro Guardado");
+			int i = pstmt.executeUpdate(); // insert, delete, update
 			pstmt.close();
 			conn.close();
+			if (i > 0) {
+				System.out.println("SQL OK");
+				return true;
+			} else {
+				System.out.println("SQL FALLIDO");
+				return false;
+			}
+
 		} catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Error, sus datos no fueron ingresados\n" + sqle);
 		}
+		return false;
+	}
 
-<<<<<<< HEAD
+	// Retirar Vehiculo
+
 	public boolean retirarVehiculo (String placa){
 		Double valorAPagar=0.0;
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -139,10 +148,6 @@ public class AppConection<user> {
 		 }
 		return false;
 		 }
-=======
-		// return false;
-	}
->>>>>>> parent of 64fe5d3 (Merge branch 'develop' of https://github.com/javiery2k/maestria-java into develop)
 
 	// Conectar
 
@@ -167,7 +172,9 @@ public class AppConection<user> {
 	 */
 	public static void main(String[] args) {
 		AppConection c = new AppConection();
-		c.conectar();
+		
+		//c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
+		c.retirarVehiculo("AK0697");
 	}
 
 }
