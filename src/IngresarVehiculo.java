@@ -70,10 +70,7 @@ public class IngresarVehiculo extends JPanel {
 		add(lblTipoVehiculo);
 
 		JComboBox<Object> tipo_vehiculo = new JComboBox<Object>();
-
 		tipo_vehiculo.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-
-
 		tipo_vehiculo.setModel(new DefaultComboBoxModel<Object>(new String[] { "","AUTOMOVIL", "MOTOCICLETA" }));
 
 		tipo_vehiculo.setSelectedIndex(0);
