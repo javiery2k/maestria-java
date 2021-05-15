@@ -37,10 +37,10 @@ public class ListarVehiculos extends JPanel {
 		setLayout(null);
 		setBounds(282, 0, 695, 505);
 		
-		String data[][]={ {"101","Amit","670000"},    
-                {"102","Jai","780000"},    
-                {"101","Sachin","700000"}};    
-		String column[]={"ID","NAME","SALARY"}; 
+		String data[][]={ {"101","AG1234","IVAN","SUV","12:30","1:25","0.30"},    
+                {"102","AG1234","JAVIER","SEDAN","12:30","1:25","0.20"},    
+                {"103","AG1234","MEDINA","MOTOCICLETA","12:30","1:25","0.10"}};    
+		String column[]={"ID","PLACA","PROPIETARIO","TIPOVEHICULO","HORAENTRADA","HORASALIDA","PAGO"}; 
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
