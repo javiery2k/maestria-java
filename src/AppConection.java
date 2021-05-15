@@ -31,6 +31,7 @@ public class AppConection<user> {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
 		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
+		System.out.println(path);
 		this.conectar();
 	}
 
