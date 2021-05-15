@@ -31,7 +31,7 @@ public class AppConection {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
 		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
-		//System.out.println(path);
+		// System.out.println(path);
 		this.conectar();
 	}
 
@@ -68,9 +68,8 @@ public class AppConection {
 
 	public boolean insertar(String placa, String propietario, String tipovehiculo, String comentario) {
 		try {
-
-			PreparedStatement pstmt = conn.prepareStatement(
-					"INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, COMENTARIO, ESTADO) VALUES (?, ?, ?, ?, ?, ?)");
+			String sql = "INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, COMENTARIO, ESTADO) VALUES (?, ?, ?, ?, ?, ?)";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
 			Calendar cal = Calendar.getInstance();
 			Date date = cal.getTime();
@@ -110,50 +109,50 @@ public class AppConection {
 		Date date = cal.getTime();
 		String fechaHora = dateFormat.format(date);
 		try {
-
-			String query;
-			query = ("SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'");
-			PreparedStatement pstmt = conn.prepareStatement(query);
+			// Preparamamos el primer Query
+			
+			String sql1 = "SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'";
+			PreparedStatement pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, placa);
 			ResultSet rs = pstmt.executeQuery();
-			rs.first();
-			String horaSalida = rs.getString(1);
-			Date horasalida = dateFormat.parse(horaSalida);
-			int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
 
-			// System.out.println(minuntosACobrar);
+			if (rs.next()) {				
+				String horaSalida = rs.getString("HORAENTRADA");
+				Date horasalida = dateFormat.parse(horaSalida);
+				int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
 
-			if (rs.getString(2).equals("Automovil")) {
-				valorAPagar = minuntosACobrar * 0.03;
-			} else if (rs.getString(2).equals("Motocicleta")) {
-				valorAPagar = minuntosACobrar * 0.02;
-			}
-
-			// System.out.println("Valos a pagar por "+rs.getString(2)+"= "+valorAPagar);
-			// int respuesta = JOptionPane.showConfirmDialog(null,"Valor a pagar:
-			// $"+valorAPagar+"'\nDesea Imprimir Recibo","Salida de
-			// vehiculo",JOptionPane.YES_NO_OPTION);
-
-			PreparedStatement pstmt1 = conn.prepareStatement(
-					"UPDATE DATA SET HORASALIDA='" + fechaHora + "', ESTADO='No Disponible', ValorPagado='"
-							+ valorAPagar + "' WHERE PLACA=? AND ESTADO='Disponible'");
-			int i = pstmt1.executeUpdate();
-
-			pstmt.close();
-			conn.close();
-			if (i > 0) {
-				System.out.println("SQL OK");
-				//return true;
-				//return valorAPagar;
+				// calculamos el valor
+				if (rs.getString("TIPOVEHICULO").equals("AUTOMOVIL")) {
+					valorAPagar = minuntosACobrar * 0.03;
+				} else if (rs.getString(2).equals("MOTOCICLETA")) {
+					valorAPagar = minuntosACobrar * 0.02;
+				}
+				
+				// Preparamamos el Update
+				String sql = "UPDATE DATA SET HORASALIDA=?, ESTADO='No Disponible', ValorPagado=? WHERE PLACA=? AND ESTADO='Disponible'";
+				PreparedStatement pstmt1 = conn.prepareStatement(sql);
+				pstmt1.setString(1, fechaHora);
+				pstmt1.setDouble(2, valorAPagar);
+				pstmt1.setString(3, placa);
+								
+				// Ejecutamos el Query
+				int i = pstmt1.executeUpdate(); // insert, delete, update
+				if (i > 0) {
+					System.out.println("SQL OK");			
+				} else {
+					System.out.println("SQL FALLIDO");
+				}		
+				pstmt.close();
+				conn.close();
+				return valorAPagar;
 			} else {
-				System.out.println("SQL FALLIDO");
-				//return false;
-				//return 0.0;
+				JOptionPane.showMessageDialog(null, "La placa no fue encontrada en el sistema.");
 			}
+
 		} catch (Exception e) {
 			System.out.println("error en la modificacion: " + e.toString());
 		}
-		return valorAPagar;//false;
+		return valorAPagar;
 	}
 
 	// Conectar
@@ -180,7 +179,7 @@ public class AppConection {
 	public static void main(String[] args) {
 		AppConection c = new AppConection();
 		// c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
-		//c.retirarVehiculo("AG4617");
+		c.retirarVehiculo("AG4617");
 	}
 
 }
