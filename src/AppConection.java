@@ -116,8 +116,7 @@ public class AppConection {
 			pstmt.setString(1, placa);
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				
+			if (rs.next()) {				
 				String horaSalida = rs.getString("HORAENTRADA");
 				Date horasalida = dateFormat.parse(horaSalida);
 				int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
@@ -139,27 +138,21 @@ public class AppConection {
 				// Ejecutamos el Query
 				int i = pstmt1.executeUpdate(); // insert, delete, update
 				if (i > 0) {
-					System.out.println("SQL OK");
-				
+					System.out.println("SQL OK");			
 				} else {
 					System.out.println("SQL FALLIDO");
-				}
-				
+				}		
 				pstmt.close();
 				conn.close();
 				return valorAPagar;
-
 			} else {
-				System.out.println("Obtained ResultSet object is empty");
-				conn.close();
-				pstmt.close();
-				return 0.0;
+				JOptionPane.showMessageDialog(null, "La placa no fue encontrada en el sistema.");
 			}
 
 		} catch (Exception e) {
 			System.out.println("error en la modificacion: " + e.toString());
 		}
-		return valorAPagar;// false;
+		return valorAPagar;
 	}
 
 	// Conectar
