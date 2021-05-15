@@ -38,7 +38,7 @@ public class IngresarVehiculo extends JPanel {
 		placa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		placa.setBounds(175, 100, 150, 40);
-		placa.setColumns(10);
+		placa.setColumns(6);
 		add(placa);
 
 		JLabel lblPlaca = new JLabel("Placa:");
