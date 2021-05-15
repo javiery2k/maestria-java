@@ -8,6 +8,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
+
+
+
 import javax.swing.JProgressBar;
 import java.awt.Font;
 import java.awt.Color;
@@ -17,6 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
@@ -28,6 +32,8 @@ public class ListarVehiculos extends JPanel {
 	 * Create the panel.
 	 */
 	public ListarVehiculos() {
+		
+
 		setLayout(null);
 		setBounds(282, 0, 695, 505);
 		
@@ -163,6 +169,6 @@ public class ListarVehiculos extends JPanel {
 		label_version.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		label_version.setBounds(601, 473, 84, 21);
 		add(label_version);
-
+		
 	}
 }
