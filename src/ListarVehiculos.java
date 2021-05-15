@@ -4,6 +4,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
@@ -13,6 +14,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JTextPane;
+import javax.swing.UIManager;
 
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
@@ -63,7 +65,7 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setForeground(SystemColor.textHighlight);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(239, 49, 124, 20);
+		lblNewLabel_2.setBounds(223, 49, 124, 20);
 		add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha");
@@ -92,19 +94,23 @@ public class ListarVehiculos extends JPanel {
 		textField_2.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Fecha");
+		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btnNewButton.setBounds(589, 78, 78, 39);
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "SUV", "Sedan", "Motocicleta"}));
 		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		comboBox.setBounds(180, 170, 100, 22);
 		add(comboBox);
 		
 		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Parqueadero", "Fuera Parqueadero"}));
+		
 		comboBox_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox_1.setBounds(405, 170, 100, 22);
+		comboBox_1.setBounds(392, 170, 150, 22);
 		add(comboBox_1);
 		
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
