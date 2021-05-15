@@ -113,7 +113,7 @@ public class ListarVehiculos extends JPanel {
 		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "SUV", "Sedan", "Motocicleta"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "AUTOMOVIL", "MOTOCICLETA"}));
 		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		comboBox.setBounds(180, 170, 100, 22);
 		add(comboBox);
