@@ -102,52 +102,57 @@ public class AppConection<user> {
 
 	// Retirar Vehiculo
 
-	public boolean retirarVehiculo (String placa){
-		Double valorAPagar=0.0;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Calendar cal  = Calendar.getInstance();
-        Date date = cal.getTime();
-        String fechaHora = dateFormat.format(date); 
-		try{
-			 
-			 String query;
-			 query = ("SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'");
-			 PreparedStatement pstmt = conn.prepareStatement(query);
-			 ResultSet rs = pstmt.executeQuery();
-			 rs.first();
-			 String horaSalida = rs.getString(1);
-	         Date horasalida = dateFormat.parse(horaSalida);
-	         int minuntosACobrar = (int) (date.getTime()-horasalida.getTime())/60000;
-	            
-	         //System.out.println(minuntosACobrar);
-	            
-	            if(rs.getString(2).equals("Automovil")){
-	                valorAPagar=minuntosACobrar*1.0;
-	            }else if(rs.getString(2).equals("Motocicleta")){
-	                 valorAPagar=minuntosACobrar*0.50;
-	            }
-			 
-	            //System.out.println("Valos a pagar por "+rs.getString(2)+"= "+valorAPagar);
-	            //int respuesta = JOptionPane.showConfirmDialog(null,"Valor a pagar:  $"+valorAPagar+"'\nDesea Imprimir Recibo","Salida de vehiculo",JOptionPane.YES_NO_OPTION);
-			 
-			 PreparedStatement pstmt1 = conn.prepareStatement("UPDATE DATA SET HORASALIDA='"+fechaHora+"', ESTADO='No Disponible', ValorPagado='"+valorAPagar+"' WHERE PLACA=? AND ESTADO='Disponible'");
-			 int i=pstmt1.executeUpdate();
-		     
-			 pstmt.close();
-		     conn.close();
-		 if (i > 0) {
+	public double retirarVehiculo(String placa) {
+		Double valorAPagar = 0.0;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		Date date = cal.getTime();
+		String fechaHora = dateFormat.format(date);
+		try {
+
+			String query;
+			query = ("SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'");
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			rs.first();
+			String horaSalida = rs.getString(1);
+			Date horasalida = dateFormat.parse(horaSalida);
+			int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
+
+			// System.out.println(minuntosACobrar);
+
+			if (rs.getString(2).equals("Automovil")) {
+				valorAPagar = minuntosACobrar * 0.03;
+			} else if (rs.getString(2).equals("Motocicleta")) {
+				valorAPagar = minuntosACobrar * 0.02;
+			}
+
+			// System.out.println("Valos a pagar por "+rs.getString(2)+"= "+valorAPagar);
+			// int respuesta = JOptionPane.showConfirmDialog(null,"Valor a pagar:
+			// $"+valorAPagar+"'\nDesea Imprimir Recibo","Salida de
+			// vehiculo",JOptionPane.YES_NO_OPTION);
+
+			PreparedStatement pstmt1 = conn.prepareStatement(
+					"UPDATE DATA SET HORASALIDA='" + fechaHora + "', ESTADO='No Disponible', ValorPagado='"
+							+ valorAPagar + "' WHERE PLACA=? AND ESTADO='Disponible'");
+			int i = pstmt1.executeUpdate();
+
+			pstmt.close();
+			conn.close();
+			if (i > 0) {
 				System.out.println("SQL OK");
-				return true;
+				//return true;
+				return valorAPagar;
 			} else {
 				System.out.println("SQL FALLIDO");
-				return false;
+				//return false;
+				return 0.0;
 			}
-		 }
-		catch (Exception e){
-		 System.out.println ("error en la modificacion: " +e.toString());
-		 }
-		return false;
-		 }
+		} catch (Exception e) {
+			System.out.println("error en la modificacion: " + e.toString());
+		}
+		return valorAPagar;//false;
+	}
 
 	// Conectar
 
@@ -172,8 +177,8 @@ public class AppConection<user> {
 	 */
 	public static void main(String[] args) {
 		AppConection c = new AppConection();
-		
-		//c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
+
+		// c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
 		c.retirarVehiculo("AK0697");
 	}
 
