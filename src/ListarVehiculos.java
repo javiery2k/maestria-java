@@ -25,7 +25,6 @@ import java.awt.event.ActionEvent;
 public class ListarVehiculos extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTable tabla1;
 
 	/**
@@ -80,7 +79,7 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel_3.setForeground(SystemColor.textHighlight);
 		lblNewLabel_3.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(452, 49, 78, 20);
+		lblNewLabel_3.setBounds(451, 49, 78, 20);
 		add(lblNewLabel_3);
 		
 		textField = new JTextField();
@@ -94,23 +93,6 @@ public class ListarVehiculos extends JPanel {
 		textField_1.setBounds(213, 78, 150, 40);
 		add(textField_1);
 		textField_1.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_2.setBounds(416, 78, 150, 40);
-		add(textField_2);
-		textField_2.setColumns(10);
-		
-		JButton btnNewButton = new JButton("Fecha");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
-		btnNewButton.setForeground(SystemColor.textHighlight);
-		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btnNewButton.setBounds(589, 78, 78, 39);
-		add(btnNewButton);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "AUTOMOVIL", "MOTOCICLETA"}));
