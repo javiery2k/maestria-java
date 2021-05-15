@@ -65,7 +65,7 @@ public class AppConection<user> {
 
 	// Insertar
 
-	public boolean insertar(String placa, String propietario, String tipovehiculo, String comentario, String estado) {
+	public boolean insertar(String placa, String propietario, String tipovehiculo, String comentario) {
 		try {
 
 			PreparedStatement pstmt = conn.prepareStatement(
