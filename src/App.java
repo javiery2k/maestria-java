@@ -25,6 +25,7 @@ public class App extends JFrame {
 	private JPanel contentPane;
 	private IngresarVehiculo ingresarVehiculo = new IngresarVehiculo();
 	private RetirarVehiculo retirarVehiculo = new RetirarVehiculo();
+	private ListarVehiculos listarVehiculos = new ListarVehiculos();
 
 	/**
 	 * Launch the application.
@@ -90,9 +91,12 @@ public class App extends JFrame {
 		btnNewButton.setBounds(15, 369, 115, 60);
 		panel.add(btnNewButton);
 		
+		//***************************************************
+		
 		JButton btnNewButton_1 = new JButton("Retirar Vehiculo");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				listarVehiculos.setVisible(false);
 				ingresarVehiculo.setVisible(false);
 				setBounds(100, 100, 1000, 550);
 				retirarVehiculo.setVisible(true);
@@ -105,6 +109,26 @@ public class App extends JFrame {
 		btnNewButton_1.setBounds(142, 369, 115, 60);
 		panel.add(btnNewButton_1);
 		
+		//****************************************************
+		
+		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				retirarVehiculo.setVisible(false);
+				ingresarVehiculo.setVisible(false);
+				setBounds(100, 100, 1000, 550);
+				listarVehiculos.setVisible(true);
+				getContentPane().add(listarVehiculos);	
+				
+			}
+		});	
+		btnNewButton_3.setMargin(new Insets(2, 2, 2, 2));
+		btnNewButton_3.setForeground(SystemColor.textHighlight);
+		btnNewButton_3.setBounds(15, 435, 115, 60);
+		panel.add(btnNewButton_3);
+		
+		//****************************************************
+		
 		JButton btnNewButton_2 = new JButton("Salir");
 		btnNewButton_2.setMargin(new Insets(2, 2, 2, 2));
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -116,11 +140,6 @@ public class App extends JFrame {
 		btnNewButton_2.setBounds(142, 435, 115, 60);
 		panel.add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Listar Vehiculos");
-		btnNewButton_3.setMargin(new Insets(2, 2, 2, 2));
-		btnNewButton_3.setForeground(SystemColor.textHighlight);
-		btnNewButton_3.setBounds(15, 435, 115, 60);
-		panel.add(btnNewButton_3);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setVisible(false);
