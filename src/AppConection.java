@@ -146,6 +146,7 @@ public class AppConection {
 				}
 				
 				pstmt.close();
+				pstmt1.close();
 				conn.close();
 				return valorAPagar;
 
@@ -162,6 +163,46 @@ public class AppConection {
 		return valorAPagar;// false;
 	}
 
+	
+	//Listar
+	public String[] listar(String estado, String tipovehiculo, String placa, String propietario, String fecha) {
+
+		try {
+			String query= "SELECT * FROM DATA WHERE ESTADO=? AND TIPOVEHICULO LIKE ? AND PLACA LIKE ?  AND PROPIETARIO LIKE  ?  AND HORAENTRADA LIKE  ? ";
+			PreparedStatement pstmt = conn.prepareStatement(query);
+						
+			pstmt.setString(1, estado);
+			pstmt.setString(2, "%" + tipovehiculo  + "%");
+			pstmt.setString(3, "%" + placa  + "%");
+			pstmt.setString(4, "%" + propietario  + "%");
+			pstmt.setString(5, "%" + fecha + "%");
+
+			ResultSet rs = pstmt.executeQuery(query);
+
+			rs.first();
+
+            do {
+                String horasalida = rs.getString("HORASALIDA");
+                String pago = rs.getString("VALORPAGADO");
+                if (horasalida == null) {
+                    horasalida = "No ha salido";
+                    pago = "0";
+                } else {
+                    horasalida = rs.getString("HORASALIDA").substring(10).substring(0,6);
+                    pago = rs.getString("VALORPAGADO");
+                }
+                String[] fila = {rs.getString("Id"), rs.getString("PLACA"), rs.getString("PROPIETARIO"), rs.getString("TIPOVEHICULO"), rs.getString("HORAENTRADA").substring(10).substring(0, 6), horasalida, "$" + pago};
+                               
+                return fila;
+            } while (rs.next());
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	
 	// Conectar
 
 	public Connection conectar() {
