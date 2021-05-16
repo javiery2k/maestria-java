@@ -40,7 +40,7 @@ public class ListarVehiculos extends JPanel {
 	public static void ActualizarTabla() {
 		AppConection conn = new AppConection();
 		ResultSet rs = conn.getAll();
-		
+			
 		DefaultTableModel modelo = new DefaultTableModel();// Creo un modelo de datos para un jtable
 		tabla1.setModel(modelo);// le asigno a la tabla el modelo de //datos
 		try {
@@ -74,7 +74,7 @@ public class ListarVehiculos extends JPanel {
 
 				ob[5] = ("$" + rs.getString(7));
 				ob[6] = (rs.getString(8));
-				// añado el modelo a la tabla
+				// aï¿½ado el modelo a la tabla
 				modelo.addRow(ob);
 				ob = null;// limpia los datos de el vector de la memoria
 			}
@@ -143,10 +143,12 @@ public class ListarVehiculos extends JPanel {
 		textField_2.setColumns(10);
 
 		JButton btnNewButton = new JButton("Fecha");
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -188,7 +190,70 @@ public class ListarVehiculos extends JPanel {
 		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBounds(112, 397, 132, 39);
 		add(btnNewButton_1);
+		
+		//----------------------------------------------
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			// Obtenemos los valores ingresados
+				Object combotipo = comboBox.getSelectedItem();
+				Object comboestado = comboBox_1.getSelectedItem();				
+				String Placa = textField.getText();
+				String Propietario = textField_1.getText();				 
+				String Fecha = textField_2.getText();
+				String TipoVehiculo = combotipo.toString();	
+				String Estado = comboestado.toString();	
+				
+				AppConection conn = new AppConection();
+				ResultSet rs = conn.getSearch(Placa,Propietario,Fecha,TipoVehiculo,Estado);
+				
+				DefaultTableModel modelo = new DefaultTableModel();// Creo un modelo de datos para un jtable
+				tabla1.setModel(modelo);// le asigno a la tabla el modelo de //datos
+				try {
+					// creo 3 columnas con sus etiquetas
+					// estas son las columnas del JTable
+					//modelo.addColumn("Id");
+					modelo.addColumn("PLACA");
+					modelo.addColumn("PROPIETARIO");
+					modelo.addColumn("TIPO");
+					modelo.addColumn("ENTRADA");
+					modelo.addColumn("SALIDA");
+					modelo.addColumn("VALOR");
+					modelo.addColumn("ESTADO");
+					// Recorro el ResultSet que contiene los resultados.
+					while (rs.next()) {
+						Object[] ob = new Object[7];// Crea un vector
+						// para almacenar los valores del ResultSet
+						ob[0] = (rs.getString(2));
+						ob[1] = (rs.getString(3));
+						ob[2] = (rs.getString(4));
+						if (rs.getString(5) != null) {
+							ob[3] = rs.getString(5).substring(10).substring(0, 6);
+						} else {
+							ob[3] = "--";
+						}
+						if (rs.getString(6) != null) {
+							ob[4] = rs.getString(6).substring(10).substring(0, 6);
+							;
+						} else {
+							ob[4] = "--";
+						}
 
+						ob[5] = ("$" + rs.getString(7));
+						ob[6] = (rs.getString(8));
+						// aï¿½ado el modelo a la tabla
+						modelo.addRow(ob);
+						ob = null;// limpia los datos de el vector de la memoria
+					}
+					rs.close(); // Cierra el ResultSet
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
+				
+			}
+		});
+		
+		//----------------------------------------------
 		JButton btnNewButton_2 = new JButton("LIMPIAR");
 		btnNewButton_2.setFocusPainted(false);
 		btnNewButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
@@ -197,7 +262,19 @@ public class ListarVehiculos extends JPanel {
 		btnNewButton_2.setForeground(Color.WHITE);
 		btnNewButton_2.setBounds(356, 397, 132, 39);
 		add(btnNewButton_2);
-
+		btnNewButton_2.addActionListener(new ActionListener() {
+		// Limpiar resultados
+		public void actionPerformed(ActionEvent e) {				
+				
+				try {
+					
+				} catch (Exception ex) {
+					System.out.println(ex.getMessage());
+				}
+		
+			}
+		});
+					
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(157, 466, 285, 21);
 		add(progressBar);

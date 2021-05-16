@@ -156,7 +156,7 @@ public class AppConection {
 		return false;
 	}
 
-	// Devueve todo el Resulset para poder actualizar el JTable
+	// Devuelve todo el Resulset para poder actualizar el JTable
 	public ResultSet getAll() {
 		try {
 			String query = "SELECT * FROM DATA WHERE 1=?";
@@ -172,6 +172,29 @@ public class AppConection {
 		return null;
 	}
 	
+	// Devuelve solo lo que cumple con los Filtros al Resulset para poder actualizar el JTable
+		public ResultSet getSearch(String Placa, String Propietario, String Fecha, String TipoVehiculo, String Estado) {
+			try {
+			
+				String query = "SELECT PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, HORASALIDA, VALORPAGADO, ESTADO  FROM DATA WHERE PLACA LIKE ?";//  AND PROPIETARIO LIKE ? AND TIPOVEHICULO LIKE ? AND ESTADO=?  AND HORAENTRADA LIKE ? ";
+				PreparedStatement pstmt = conn.prepareStatement(query);		
+				
+				pstmt.setString(1,"Placa");
+				//pstmt.setString(1, "%" + Placa + "%");
+				/*pstmt.setString(2, "%" + Propietario + "%");
+				pstmt.setString(3, "%" + Fecha + "%");
+				pstmt.setString(4,  TipoVehiculo );
+				pstmt.setString(5, "%" + Estado + "%");	*/	
+				
+				ResultSet rs = pstmt.executeQuery();
+
+				return rs;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
 	
 	//Codigo de Gustavo que puede ser usado para las busquedas
 	public String[] listar(String estado, String tipovehiculo, String placa, String propietario, String fecha) {
