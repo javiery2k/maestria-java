@@ -23,7 +23,7 @@ public class AppConection {
 	Connection conn;
 	String driver;
 	String path;
-
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	/**
 	 * 
 	 */
@@ -31,28 +31,22 @@ public class AppConection {
 		conn = null;
 		driver = "net.ucanaccess.jdbc.UcanaccessDriver";
 		path = System.getProperty("user.dir") + "/bd/DATOS.accdb";
-		// System.out.println(path);
 		this.conectar();
 	}
 
 	public boolean logearse(String user, String pass) {
 		try {
-
-			PreparedStatement pstmt = conn
-					.prepareStatement("SELECT * FROM USUARIOS WHERE USERNAME = ? AND PASS = ? LIMIT 1");
+			String sql = "SELECT * FROM USUARIOS WHERE USERNAME = ? AND PASS = ? LIMIT 1";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user);
 			pstmt.setString(2, pass);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				System.out.print("id: " + rs.getInt("id") + ", ");
-				System.out.print("Username: " + rs.getString("USERNAME") + ", ");
-				System.out.print("Pass: " + rs.getString("PASS") + ", ");
 				conn.close();
 				pstmt.close();
 				return true;
 			} else {
-				System.out.println("Obtained ResultSet object is empty");
 				conn.close();
 				pstmt.close();
 				return false;
@@ -70,18 +64,15 @@ public class AppConection {
 		try {
 			String sql = "INSERT INTO DATA (PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, COMENTARIO, ESTADO) VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
-			Calendar cal = Calendar.getInstance();
-			Date date = cal.getTime();
-			String FechaHora = dateFormat.format(date);
-			String Estado = "Disponible";
+			String horaEntrada = dateFormat.format(Calendar.getInstance().getTime());
+			String estado = "DISPONIBLE";
 
 			pstmt.setString(1, placa);
 			pstmt.setString(2, propietario);
 			pstmt.setString(3, tipovehiculo);
-			pstmt.setString(4, FechaHora);
+			pstmt.setString(4, horaEntrada);
 			pstmt.setString(5, comentario);
-			pstmt.setString(6, Estado);
+			pstmt.setString(6, estado);
 
 			int i = pstmt.executeUpdate(); // insert, delete, update
 			pstmt.close();
@@ -100,109 +91,131 @@ public class AppConection {
 		return false;
 	}
 
-	// Retirar Vehiculo
 
-	public double retirarVehiculo(String placa) {
-		Double valorAPagar = 0.0;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Calendar cal = Calendar.getInstance();
-		Date date = cal.getTime();
-		String fechaHora = dateFormat.format(date);
+
+	public void updateRetiro(String horaSalida, Double valor, String placa) {
+		try {
+			// Preparamamos el Update
+			String sql = "UPDATE DATA SET HORASALIDA=?, ESTADO='NO DISPONIBLE', VALORPAGADO=? WHERE PLACA=? AND ESTADO='DISPONIBLE'";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, horaSalida);
+			pstmt.setDouble(2, valor);
+			pstmt.setString(3, placa);
+
+			// Ejecutamos el Query
+			int i = pstmt.executeUpdate(); // insert, delete, update
+			if (i > 0) {
+				System.out.println("SQL OK");
+			} else {
+				System.out.println("SQL FALLIDO");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public boolean retirarVehiculo(String placa) {
+		Double valorPagar = 0.0;
+		Date date = Calendar.getInstance().getTime();
+		String horaSalida = dateFormat.format(date);
+
 		try {
 			// Preparamamos el primer Query
-			
-			String sql1 = "SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='Disponible'";
+
+			String sql1 = "SELECT HORAENTRADA, TIPOVEHICULO FROM DATA WHERE PLACA=? AND ESTADO='DISPONIBLE'";
 			PreparedStatement pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, placa);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				
-				String horaSalida = rs.getString("HORAENTRADA");
-				Date horasalida = dateFormat.parse(horaSalida);
-				int minuntosACobrar = (int) (date.getTime() - horasalida.getTime()) / 60000;
+
+				Date horaEntrada = dateFormat.parse(rs.getString("HORAENTRADA"));
+				int minuntosCobrar = (int) (date.getTime() - horaEntrada.getTime()) / 60000;
 
 				// calculamos el valor
 				if (rs.getString("TIPOVEHICULO").equals("AUTOMOVIL")) {
-					valorAPagar = minuntosACobrar * 0.03;
+					valorPagar = minuntosCobrar * 0.03;
 				} else if (rs.getString(2).equals("MOTOCICLETA")) {
-					valorAPagar = minuntosACobrar * 0.02;
+					valorPagar = minuntosCobrar * 0.02;
 				}
-				
-				// Preparamamos el Update
-				String sql = "UPDATE DATA SET HORASALIDA=?, ESTADO='No Disponible', ValorPagado=? WHERE PLACA=? AND ESTADO='Disponible'";
-				PreparedStatement pstmt1 = conn.prepareStatement(sql);
-				pstmt1.setString(1, fechaHora);
-				pstmt1.setDouble(2, valorAPagar);
-				pstmt1.setString(3, placa);
-								
-				// Ejecutamos el Query
-				int i = pstmt1.executeUpdate(); // insert, delete, update
-				if (i > 0) {
-					System.out.println("SQL OK");
-				
-				} else {
-					System.out.println("SQL FALLIDO");
-				}
-				
-				pstmt.close();
-				pstmt1.close();
-				conn.close();
-				return valorAPagar;
 
+				updateRetiro(horaSalida, valorPagar, placa);
+				JOptionPane.showMessageDialog(null, "El valor a pagar es de:" + valorPagar);
+				return true;
 			} else {
 				System.out.println("Obtained ResultSet object is empty");
 				conn.close();
 				pstmt.close();
-				return 0.0;
+				return false;
 			}
 
 		} catch (Exception e) {
 			System.out.println("error en la modificacion: " + e.toString());
 		}
-		return valorAPagar;// false;
+		return false;
 	}
 
+	// Devueve todo el Resulset para poder actualizar el JTable
+	public ResultSet getAll() {
+		try {
+			String query = "SELECT * FROM DATA WHERE 1=?";
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "1");
+			ResultSet rs = pstmt.executeQuery();
+
+			return rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
-	//Listar
+	
+	//Codigo de Gustavo que puede ser usado para las busquedas
 	public String[] listar(String estado, String tipovehiculo, String placa, String propietario, String fecha) {
 
 		try {
-			String query= "SELECT * FROM DATA WHERE ESTADO=? AND TIPOVEHICULO LIKE ? AND PLACA LIKE ?  AND PROPIETARIO LIKE  ?  AND HORAENTRADA LIKE  ? ";
+			// String query = "SELECT * FROM DATA WHERE ESTADO=? AND TIPOVEHICULO LIKE ? AND
+			// PLACA LIKE ? AND PROPIETARIO LIKE ? AND HORAENTRADA LIKE ? ";
+			String query = "SELECT * FROM DATA";
+
 			PreparedStatement pstmt = conn.prepareStatement(query);
-						
+
 			pstmt.setString(1, estado);
-			pstmt.setString(2, "%" + tipovehiculo  + "%");
-			pstmt.setString(3, "%" + placa  + "%");
-			pstmt.setString(4, "%" + propietario  + "%");
+			pstmt.setString(2, "%" + tipovehiculo + "%");
+			pstmt.setString(3, "%" + placa + "%");
+			pstmt.setString(4, "%" + propietario + "%");
 			pstmt.setString(5, "%" + fecha + "%");
 
 			ResultSet rs = pstmt.executeQuery(query);
 
 			rs.first();
 
-            do {
-                String horasalida = rs.getString("HORASALIDA");
-                String pago = rs.getString("VALORPAGADO");
-                if (horasalida == null) {
-                    horasalida = "No ha salido";
-                    pago = "0";
-                } else {
-                    horasalida = rs.getString("HORASALIDA").substring(10).substring(0,6);
-                    pago = rs.getString("VALORPAGADO");
-                }
-                String[] fila = {rs.getString("Id"), rs.getString("PLACA"), rs.getString("PROPIETARIO"), rs.getString("TIPOVEHICULO"), rs.getString("HORAENTRADA").substring(10).substring(0, 6), horasalida, "$" + pago};
-                               
-                return fila;
-            } while (rs.next());
+			do {
+				String horasalida = rs.getString("HORASALIDA");
+				String pago = rs.getString("VALORPAGADO");
+				if (horasalida == null) {
+					horasalida = "No ha salido";
+					pago = "0";
+				} else {
+					horasalida = rs.getString("HORASALIDA").substring(10).substring(0, 6);
+					pago = rs.getString("VALORPAGADO");
+				}
+				String[] fila = { rs.getString("Id"), rs.getString("PLACA"), rs.getString("PROPIETARIO"),
+						rs.getString("TIPOVEHICULO"), rs.getString("HORAENTRADA").substring(10).substring(0, 6),
+						horasalida, "$" + pago };
+
+				return fila;
+			} while (rs.next());
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return null;
 	}
-	
-	
+
 	// Conectar
 
 	public Connection conectar() {
@@ -223,11 +236,12 @@ public class AppConection {
 
 	/**
 	 * @param args
+	 * @throws SQLException
 	 */
-	public static void main(String[] args) {
-		AppConection c = new AppConection();
+	public static void main(String[] args) throws SQLException {
+		//AppConection c = new AppConection();
 		// c.insertar("AK0697", "Daniel2", "UV", "GARAGE", "TEST");
-		c.retirarVehiculo("AG4617");
+		//c.getAll();
 	}
 
 }

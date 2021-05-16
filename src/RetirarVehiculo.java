@@ -27,28 +27,29 @@ public class RetirarVehiculo extends JPanel {
 	 * Create the panel.
 	 */
 	public RetirarVehiculo() {
+		setBackground(new Color(42, 88, 173));
 
 		placa = new JTextField();
-		placa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		placa.setBorder(new LineBorder(new Color(0, 0, 0)));
 		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		placa.setBounds(267, 219, 177, 40);
+		placa.setBounds(207, 243, 177, 25);
 		placa.setColumns(10);
 		add(placa);
-		
-		setBounds(282, 0, 695, 505);
 
-		JLabel label_placa = new JLabel("Placa");
-		label_placa.setForeground(SystemColor.textHighlight);
-		label_placa.setHorizontalAlignment(SwingConstants.CENTER);
-		label_placa.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		label_placa.setBounds(175, 222, 65, 32);
-		add(label_placa);
+		setBounds(282, 0, 600, 505);
+
+		JLabel lblplaca = new JLabel("*Placa");
+		lblplaca.setForeground(Color.WHITE);
+		lblplaca.setHorizontalAlignment(SwingConstants.CENTER);
+		lblplaca.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		lblplaca.setBounds(261, 150, 65, 32);
+		add(lblplaca);
 
 		JLabel lblModuloDeSalida = new JLabel("Modulo de Salida del Vehiculo");
 		lblModuloDeSalida.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModuloDeSalida.setFont(new Font("Century Gothic", Font.PLAIN, 22));
-		lblModuloDeSalida.setForeground(SystemColor.textHighlight);
-		lblModuloDeSalida.setBounds(10, 148, 675, 28);
+		lblModuloDeSalida.setForeground(Color.WHITE);
+		lblModuloDeSalida.setBounds(86, 61, 428, 28);
 		add(lblModuloDeSalida);
 
 		JLabel label_version = new JLabel("Parking 1.0");
@@ -58,35 +59,42 @@ public class RetirarVehiculo extends JPanel {
 		add(label_version);
 
 		JButton btn_retirar = new JButton("RETIRAR");
+		btn_retirar.setFocusPainted(false);
 		btn_retirar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Hacemos nuestra coneccion de BD
-				AppConection conn = new AppConection();
 				// Leemos los campos
 				String field1 = placa.getText();
 				if (!field1.isEmpty()) {
-					Double total = conn.retirarVehiculo(field1);
-					System.out.println(total);
-					if (total > 0.0) {
-						JOptionPane.showMessageDialog(null, "Registro Ingresado");
-					} else {
-						JOptionPane.showMessageDialog(null, "La placa no fue encontrada");
+					// Hacemos nuestra coneccion de BD
+					AppConection conn = new AppConection();
+
+					if (!conn.retirarVehiculo(field1)) {
+						JOptionPane.showMessageDialog(null, "La placa " + field1 + " no fue encontrada");
 					}
+					placa.setText("");
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Por favor llene los campos requeridos");
 				}
-				
 
-				//conn.insertar(field1, field2, field3, field4, "INGRESO");
+				// conn.insertar(field1, field2, field3, field4, "INGRESO");
 			}
 		});
-		btn_retirar.setBounds(286, 301, 122, 39);
-		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btn_retirar.setForeground(SystemColor.textHighlight);
-		btn_retirar.setBorder(UIManager.getBorder("CheckBox.border"));
-		btn_retirar.setBackground(UIManager.getColor("Button.background"));
+
+		btn_retirar.setBounds(241, 329, 122, 39);
+		btn_retirar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btn_retirar.setBorder(new LineBorder(Color.WHITE));
+		btn_retirar.setBackground(new Color(42, 88, 173));
+		btn_retirar.setForeground(Color.WHITE);
+
 		add(btn_retirar);
 		setLayout(null);
+
+		JLabel lblNewLabel_2_1_1 = new JLabel("*Todos los campos son requeridos.");
+		lblNewLabel_2_1_1.setForeground(Color.WHITE);
+		lblNewLabel_2_1_1.setFont(new Font("Century Gothic", Font.PLAIN, 10));
+		lblNewLabel_2_1_1.setBounds(207, 429, 185, 14);
+		add(lblNewLabel_2_1_1);
 	}
 }

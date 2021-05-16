@@ -20,9 +20,7 @@ public class Login extends JFrame {
 	 * github
 	 */
 	private static final long serialVersionUID = 1L;
-	Color color1 = new Color(234, 238, 241);
-	Color color2 = new Color(42, 88, 173);
-	Color color3 = new Color(34, 171, 233);
+	
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -57,6 +55,7 @@ public class Login extends JFrame {
 		 * Jpanel Principal
 		 */
 		JPanel contentPane = new JPanel();
+		contentPane.setBackground(Color.RED);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -66,8 +65,7 @@ public class Login extends JFrame {
 		 */
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
-		panel.setBackground(color1);
-		panel.setBounds(0, 0, 325, 313);
+		panel.setBounds(0, 0, 325, 323);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -77,8 +75,8 @@ public class Login extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		panel_1.setForeground(Color.WHITE);
-		panel_1.setBackground(color2);
-		panel_1.setBounds(324, 0, 312, 313);
+		panel_1.setBackground(new Color(42, 88, 173));
+		panel_1.setBounds(324, 0, 322, 323);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -87,7 +85,7 @@ public class Login extends JFrame {
 		 */
 		JLabel lblNewLabel_2 = new JLabel("Parking 1.0");
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2.setForeground(color2);
+		lblNewLabel_2.setForeground(new Color(42, 88, 173));
 		lblNewLabel_2.setBounds(120, 259, 84, 21);
 		panel.add(lblNewLabel_2);
 
@@ -122,7 +120,7 @@ public class Login extends JFrame {
 		 * Campo de Usuario
 		 */
 		textField = new JTextField();
-		textField.setBackground(color2);
+		textField.setBackground(new Color(42, 88, 173));
 		textField.setForeground(Color.WHITE);
 		textField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
 		textField.setCaretColor(Color.WHITE);
@@ -133,7 +131,7 @@ public class Login extends JFrame {
 		 * Campo de Password
 		 */
 		passwordField = new JPasswordField();
-		passwordField.setBackground(color2);
+		passwordField.setBackground(new Color(42, 88, 173));
 		passwordField.setForeground(Color.WHITE);
 		passwordField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
 		passwordField.setCaretColor(Color.WHITE);
@@ -191,7 +189,7 @@ public class Login extends JFrame {
 			}
 		});
 		btnNewButton.setBorder(new LineBorder(Color.WHITE));
-		btnNewButton.setBackground(color2);
+		btnNewButton.setBackground(new Color(42, 88, 173));
 		btnNewButton.setBounds(73, 226, 89, 23);
 		panel_1.add(btnNewButton);
 
@@ -206,7 +204,7 @@ public class Login extends JFrame {
 			}
 		});
 		btnSalir.setBorder(new LineBorder(Color.WHITE));
-		btnSalir.setBackground(color2);
+		btnSalir.setBackground(new Color(42, 88, 173));
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBounds(175, 226, 89, 23);
 		panel_1.add(btnSalir);
