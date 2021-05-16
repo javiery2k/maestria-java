@@ -176,15 +176,14 @@ public class AppConection {
 		public ResultSet getSearch(String Placa, String Propietario, String Fecha, String TipoVehiculo, String Estado) {
 			try {
 			
-				String query = "SELECT *  FROM DATA WHERE (PLACA LIKE ? OR PLACA='') AND (PROPIETARIO LIKE ? OR PROPIETARIO='') AND (TIPOVEHICULO LIKE ? OR TIPOVEHICULO='') AND (ESTADO LIKE ? OR ESTADO='')  ";
+				String query = "SELECT *  FROM DATA WHERE (PLACA LIKE ? OR PLACA='') AND (PROPIETARIO LIKE ? OR PROPIETARIO='') AND (TIPOVEHICULO LIKE ? OR TIPOVEHICULO='') AND (ESTADO LIKE ? OR ESTADO='')";
 				PreparedStatement pstmt = conn.prepareStatement(query);		
 				
-				//pstmt.setString(1,Placa);
 				pstmt.setString(1, "%" + Placa + "%");
 				pstmt.setString(2, "%" + Propietario + "%");
-				//pstmt.setString(3, "%" + Fecha + "%");
 				pstmt.setString(3, "%" + TipoVehiculo + "%");
-				pstmt.setString(4, "%" + Estado + "%");	
+				pstmt.setString(4, Estado + "%");	
+				//pstmt.setString(4, "%"+Estado+"%");	
 				
 				ResultSet rs = pstmt.executeQuery();
 

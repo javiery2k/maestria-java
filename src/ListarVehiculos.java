@@ -165,8 +165,7 @@ public class ListarVehiculos extends JPanel {
 		add(tipo);
 
 		JComboBox disponibilidad = new JComboBox();
-		disponibilidad.setModel(new DefaultComboBoxModel(new String[] {"", "DISPONIBLE", "NO DISPONIBLE"}));
-
+		disponibilidad.setModel(new DefaultComboBoxModel(new String[] { "", "DISPONIBLE", "NO DISPONIBLE" }));
 		disponibilidad.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		disponibilidad.setBounds(350, 190, 150, 25);
 		add(disponibilidad);
@@ -205,7 +204,9 @@ public class ListarVehiculos extends JPanel {
 				String TipoVehiculo = tipo.getSelectedItem().toString();
 				String Estado = disponibilidad.getSelectedItem().toString();
 				ResultSet rs = conn.getSearch(Placa, Propietario, Fecha, TipoVehiculo, Estado);
+	
 				ActualizarTabla(rs);
+   					
 			}
 		});
 
@@ -230,11 +231,19 @@ public class ListarVehiculos extends JPanel {
 				disponibilidad.setSelectedIndex(0);
 			}
 		});
-
+		
+		//int i=0;
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(157, 466, 285, 21);
+		progressBar.setValue(0);    
+		progressBar.setStringPainted(true);  
 		add(progressBar);
-
+		/*while(i<=20){    
+			progressBar.setValue(i);    
+			  i=i+20;    
+			  try{Thread.sleep(150);}catch(Exception e){}    
+			}    
+		*/	
 		JLabel lblProgreso = new JLabel("Progreso:");
 		lblProgreso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProgreso.setForeground(Color.WHITE);
