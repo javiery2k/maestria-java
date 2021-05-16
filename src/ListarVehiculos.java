@@ -164,12 +164,12 @@ public class ListarVehiculos extends JPanel {
 		tipo.setBounds(100, 190, 150, 25);
 		add(tipo);
 
-		JComboBox ubicacion = new JComboBox();
-		ubicacion.setModel(new DefaultComboBoxModel(new String[] { "", "PARQUEADERO", "FUERA PARQUEADERO" }));
+		JComboBox disponibilidad = new JComboBox();
+		disponibilidad.setModel(new DefaultComboBoxModel(new String[] {"", "DISPONIBLE", "NO DISPONIBLE"}));
 
-		ubicacion.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		ubicacion.setBounds(350, 190, 150, 25);
-		add(ubicacion);
+		disponibilidad.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		disponibilidad.setBounds(350, 190, 150, 25);
+		add(disponibilidad);
 
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -178,7 +178,7 @@ public class ListarVehiculos extends JPanel {
 		lblTipoVehiculo.setBounds(116, 159, 113, 20);
 		add(lblTipoVehiculo);
 
-		JLabel lblUbicacionVehiculo = new JLabel("Ubicaci\u00F3n del Vehiculo");
+		JLabel lblUbicacionVehiculo = new JLabel("Disponibilidad");
 		lblUbicacionVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacionVehiculo.setForeground(Color.WHITE);
 		lblUbicacionVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
@@ -199,13 +199,11 @@ public class ListarVehiculos extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				// Obtenemos los valores ingresados
-				Object combotipo = tipo.getSelectedItem();
-				Object comboestado = ubicacion.getSelectedItem();
 				String Placa = placa.getText();
 				String Propietario = propietario.getText();
 				String Fecha = fecha.getText();
-				String TipoVehiculo = combotipo.toString();
-				String Estado = comboestado.toString();
+				String TipoVehiculo = tipo.getSelectedItem().toString();
+				String Estado = disponibilidad.getSelectedItem().toString();
 				ResultSet rs = conn.getSearch(Placa, Propietario, Fecha, TipoVehiculo, Estado);
 				ActualizarTabla(rs);
 			}
@@ -229,7 +227,7 @@ public class ListarVehiculos extends JPanel {
 				propietario.setText("");
 				fecha.setText("");
 				tipo.setSelectedIndex(0);
-				ubicacion.setSelectedIndex(0);
+				disponibilidad.setSelectedIndex(0);
 			}
 		});
 
