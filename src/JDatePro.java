@@ -11,6 +11,7 @@ import java.awt.Rectangle;
 public class JDatePro extends JPanel {
 	private JDatePickerImpl datePicker;
 	private String dateText;
+	
 
 	/**
 	 * Create the panel.

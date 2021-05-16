@@ -33,8 +33,10 @@ public class ListarVehiculos extends JPanel {
 	private JTextField propietario;
 	private JTextField fecha;
 	private static JTable tabla1 = new JTable();
-	AppConection conn = new AppConection();
-	static DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
+	private AppConection conn = new AppConection();
+	private JDatePro jdp;
+	
+	//static DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 	/**
 	 * Create the panel.
 	 * 
@@ -145,25 +147,17 @@ public class ListarVehiculos extends JPanel {
 		add(propietario);
 		propietario.setColumns(10);
 
-		fecha = new JTextField();
-		fecha.setBorder(new LineBorder(new Color(171, 173, 179)));
-		fecha.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		fecha.setBounds(440, 120, 100, 25);
-		add(fecha);
-		fecha.setColumns(10);
+		
+		//***************************************************
+		
+		jdp = new JDatePro();
+		jdp.setBounds(440, 115, 250, 40);
+		add(jdp);
+		
 
-		JButton btnNewButton = new JButton("Fecha");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
-		btnNewButton.setForeground(SystemColor.textHighlight);
-		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btnNewButton.setBounds(620, 120, 100, 25);
-		add(btnNewButton);
-
-		JComboBox tipo = new JComboBox();
+		//***************************************************
+		
+				JComboBox tipo = new JComboBox();
 		tipo.setModel(new DefaultComboBoxModel(new String[] { "", "AUTOMOVIL", "MOTOCICLETA" }));
 		tipo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		tipo.setBounds(166, 190, 150, 25);
