@@ -41,12 +41,18 @@ public class ListarVehiculos extends JPanel {
 	 * 
 	 * @throws SQLException
 	 */
+	
+	
+	public ListarVehiculos() {
+		this.init();
+	}
+
+	
 	public static void ActualizarTabla(ResultSet rs) {
 
 		DefaultTableModel modelo = new DefaultTableModel();// Creo un modelo de datos para un jtable
 		tabla1.setModel(modelo);// le asigno a la tabla el modelo de //datos
 		try {
-			// creo 3 columnas con sus etiquetas
 			// estas son las columnas del JTable
 			modelo.addColumn("PLACA");
 			modelo.addColumn("PROPIETARIO");
@@ -86,7 +92,8 @@ public class ListarVehiculos extends JPanel {
 		}
 	}
 
-	public ListarVehiculos() {
+	
+	public void init() {
 		setLayout(null);
 		setBackground(new Color(42, 88, 173));
 		setBounds(282, 0, 600, 500);
@@ -145,12 +152,6 @@ public class ListarVehiculos extends JPanel {
 		fecha.setColumns(10);
 
 		JButton btnNewButton = new JButton("Fecha");
-
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -205,8 +206,6 @@ public class ListarVehiculos extends JPanel {
 				String Fecha = fecha.getText();
 				String TipoVehiculo = combotipo.toString();
 				String Estado = comboestado.toString();
-
-				AppConection conn = new AppConection();
 				ResultSet rs = conn.getSearch(Placa, Propietario, Fecha, TipoVehiculo, Estado);
 				ActualizarTabla(rs);
 			}
@@ -259,9 +258,7 @@ public class ListarVehiculos extends JPanel {
 		tabla1.setAlignmentY(Component.TOP_ALIGNMENT);
 		tabla1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-		AppConection conn = new AppConection();
 		ResultSet rs = conn.getAll();
 		ActualizarTabla(rs);
-
 	}
 }
