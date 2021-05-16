@@ -151,6 +151,7 @@ public class ListarVehiculos extends JPanel {
 		//***************************************************
 		
 		jdp = new JDatePro();
+		jdp.setBackground(new Color(42, 88, 173));
 		jdp.setBounds(440, 115, 250, 40);
 		add(jdp);
 		

@@ -17,7 +17,7 @@ public class JDatePro extends JPanel {
 	 * Create the panel.
 	 */
 	public JDatePro() {
-		this.setBounds(0, 0, 385, 260);
+		this.setBounds(440, 115, 250, 40);
 		UtilDateModel model = new UtilDateModel();
 		model.setDate(2021, 04, 01);
 		model.setSelected(true);
