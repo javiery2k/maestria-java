@@ -16,7 +16,7 @@ public class JDatePro extends JPanel {
 	 * Create the panel.
 	 */
 	public JDatePro() {
-		this.setBounds(0, 0, 210, 30);
+		this.setBounds(0, 0, 385, 260);
 		UtilDateModel model = new UtilDateModel();
 		model.setDate(2021, 04, 01);
 		model.setSelected(true);
@@ -24,7 +24,7 @@ public class JDatePro extends JPanel {
 		p.put("text.day", "Hoy");
 		p.put("text.month", "Mes");
 		p.put("text.year", "Año");
-		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);		
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 		this.add(datePicker);
 		dateText=datePicker.getJFormattedTextField().getText();
@@ -32,5 +32,10 @@ public class JDatePro extends JPanel {
 
 	protected String getDate() {
 		return dateText;
+	}
+	
+	public static void main(String []args) {
+		JDatePro jdp = new JDatePro();
+		jdp.setVisible(true);
 	}
 }

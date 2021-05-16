@@ -153,6 +153,10 @@ public class ListarVehiculos extends JPanel {
 		fecha.setColumns(10);
 
 		JButton btnNewButton = new JButton("Fecha");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
