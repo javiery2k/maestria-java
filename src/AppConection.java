@@ -176,10 +176,10 @@ public class AppConection {
 		public ResultSet getSearch(String Placa, String Propietario, String Fecha, String TipoVehiculo, String Estado) {
 			try {
 			
-				String query = "SELECT PLACA, PROPIETARIO, TIPOVEHICULO, HORAENTRADA, HORASALIDA, VALORPAGADO, ESTADO  FROM DATA WHERE PLACA LIKE ?";//  AND PROPIETARIO LIKE ? AND TIPOVEHICULO LIKE ? AND ESTADO=?  AND HORAENTRADA LIKE ? ";
+				String query = "SELECT *  FROM DATA WHERE PLACA LIKE ?";//  AND PROPIETARIO LIKE ? AND TIPOVEHICULO LIKE ? AND ESTADO=?  AND HORAENTRADA LIKE ? ";
 				PreparedStatement pstmt = conn.prepareStatement(query);		
 				
-				pstmt.setString(1,"Placa");
+				pstmt.setString(1,"AK0697");
 				//pstmt.setString(1, "%" + Placa + "%");
 				/*pstmt.setString(2, "%" + Propietario + "%");
 				pstmt.setString(3, "%" + Fecha + "%");

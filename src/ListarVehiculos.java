@@ -28,19 +28,21 @@ public class ListarVehiculos extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField placa;
+	private JTextField propietario;
+	private JTextField fecha;
 	private static JTable tabla1 = new JTable();
+	AppConection conn = new AppConection();
+
 	/**
 	 * Create the panel.
 	 * 
+	 * @param rs
+	 * 
 	 * @throws SQLException
 	 */
-	public static void ActualizarTabla() {
-		AppConection conn = new AppConection();
-		ResultSet rs = conn.getAll();
-			
+	public static void ActualizarTabla(ResultSet rs) {
+
 		DefaultTableModel modelo = new DefaultTableModel();// Creo un modelo de datos para un jtable
 		tabla1.setModel(modelo);// le asigno a la tabla el modelo de //datos
 		try {
@@ -121,52 +123,52 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel_3.setBounds(328, 91, 78, 20);
 		add(lblNewLabel_3);
 
-		textField = new JTextField();
-		textField.setBorder(new LineBorder(new Color(171, 173, 179)));
-		textField.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField.setBounds(40, 120, 100, 25);
-		add(textField);
-		textField.setColumns(10);
+		placa = new JTextField();
+		placa.setBorder(new LineBorder(new Color(171, 173, 179)));
+		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		placa.setBounds(40, 120, 100, 25);
+		add(placa);
+		placa.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBorder(new LineBorder(new Color(171, 173, 179)));
-		textField_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_1.setBounds(180, 120, 100, 25);
-		add(textField_1);
-		textField_1.setColumns(10);
+		propietario = new JTextField();
+		propietario.setBorder(new LineBorder(new Color(171, 173, 179)));
+		propietario.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		propietario.setBounds(180, 120, 100, 25);
+		add(propietario);
+		propietario.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBorder(new LineBorder(new Color(171, 173, 179)));
-		textField_2.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		textField_2.setBounds(320, 120, 100, 25);
-		add(textField_2);
-		textField_2.setColumns(10);
+		fecha = new JTextField();
+		fecha.setBorder(new LineBorder(new Color(171, 173, 179)));
+		fecha.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		fecha.setBounds(320, 120, 100, 25);
+		add(fecha);
+		fecha.setColumns(10);
 
 		JButton btnNewButton = new JButton("Fecha");
-		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		btnNewButton.setBounds(460, 120, 100, 25);
 		add(btnNewButton);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "", "AUTOMOVIL", "MOTOCICLETA" }));
-		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox.setBounds(100, 190, 150, 25);
-		add(comboBox);
+		JComboBox tipo = new JComboBox();
+		tipo.setModel(new DefaultComboBoxModel(new String[] { "", "AUTOMOVIL", "MOTOCICLETA" }));
+		tipo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		tipo.setBounds(100, 190, 150, 25);
+		add(tipo);
 
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "", "PARQUEADERO", "FUERA PARQUEADERO" }));
+		JComboBox ubicacion = new JComboBox();
+		ubicacion.setModel(new DefaultComboBoxModel(new String[] { "", "PARQUEADERO", "FUERA PARQUEADERO" }));
 
-		comboBox_1.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		comboBox_1.setBounds(350, 190, 150, 25);
-		add(comboBox_1);
+		ubicacion.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+		ubicacion.setBounds(350, 190, 150, 25);
+		add(ubicacion);
 
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -182,99 +184,56 @@ public class ListarVehiculos extends JPanel {
 		lblUbicacionVehiculo.setBounds(322, 159, 202, 20);
 		add(lblUbicacionVehiculo);
 
-		JButton btnNewButton_1 = new JButton("BUSCAR");
-		btnNewButton_1.setFocusPainted(false);
-		btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		btnNewButton_1.setBorder(new LineBorder(Color.WHITE));
-		btnNewButton_1.setBackground(new Color(42, 88, 173));
-		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBounds(112, 397, 132, 39);
-		add(btnNewButton_1);
-		
-		//----------------------------------------------
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			// Obtenemos los valores ingresados
-				Object combotipo = comboBox.getSelectedItem();
-				Object comboestado = comboBox_1.getSelectedItem();				
-				String Placa = textField.getText();
-				String Propietario = textField_1.getText();				 
-				String Fecha = textField_2.getText();
-				String TipoVehiculo = combotipo.toString();	
-				String Estado = comboestado.toString();	
-				
-				AppConection conn = new AppConection();
-				ResultSet rs = conn.getSearch(Placa,Propietario,Fecha,TipoVehiculo,Estado);
-				
-				DefaultTableModel modelo = new DefaultTableModel();// Creo un modelo de datos para un jtable
-				tabla1.setModel(modelo);// le asigno a la tabla el modelo de //datos
-				try {
-					// creo 3 columnas con sus etiquetas
-					// estas son las columnas del JTable
-					//modelo.addColumn("Id");
-					modelo.addColumn("PLACA");
-					modelo.addColumn("PROPIETARIO");
-					modelo.addColumn("TIPO");
-					modelo.addColumn("ENTRADA");
-					modelo.addColumn("SALIDA");
-					modelo.addColumn("VALOR");
-					modelo.addColumn("ESTADO");
-					// Recorro el ResultSet que contiene los resultados.
-					while (rs.next()) {
-						Object[] ob = new Object[7];// Crea un vector
-						// para almacenar los valores del ResultSet
-						ob[0] = (rs.getString(2));
-						ob[1] = (rs.getString(3));
-						ob[2] = (rs.getString(4));
-						if (rs.getString(5) != null) {
-							ob[3] = rs.getString(5).substring(10).substring(0, 6);
-						} else {
-							ob[3] = "--";
-						}
-						if (rs.getString(6) != null) {
-							ob[4] = rs.getString(6).substring(10).substring(0, 6);
-							;
-						} else {
-							ob[4] = "--";
-						}
+		JButton btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setFocusPainted(false);
+		btnBuscar.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btnBuscar.setBorder(new LineBorder(Color.WHITE));
+		btnBuscar.setBackground(new Color(42, 88, 173));
+		btnBuscar.setForeground(Color.WHITE);
+		btnBuscar.setBounds(112, 397, 132, 39);
+		add(btnBuscar);
 
-						ob[5] = ("$" + rs.getString(7));
-						ob[6] = (rs.getString(8));
-						// a�ado el modelo a la tabla
-						modelo.addRow(ob);
-						ob = null;// limpia los datos de el vector de la memoria
-					}
-					rs.close(); // Cierra el ResultSet
-				} catch (Exception ex) {
-					System.out.println(ex.getMessage());
-				}
-				
+		// ----------------------------------------------
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// Obtenemos los valores ingresados
+				Object combotipo = tipo.getSelectedItem();
+				Object comboestado = ubicacion.getSelectedItem();
+				String Placa = placa.getText();
+				String Propietario = propietario.getText();
+				String Fecha = fecha.getText();
+				String TipoVehiculo = combotipo.toString();
+				String Estado = comboestado.toString();
+
+				AppConection conn = new AppConection();
+				ResultSet rs = conn.getSearch(Placa, Propietario, Fecha, TipoVehiculo, Estado);
+				ActualizarTabla(rs);
 			}
 		});
-		
-		//----------------------------------------------
-		JButton btnNewButton_2 = new JButton("LIMPIAR");
-		btnNewButton_2.setFocusPainted(false);
-		btnNewButton_2.setFont(new Font("Century Gothic", Font.PLAIN, 11));
-		btnNewButton_2.setBorder(new LineBorder(Color.WHITE));
-		btnNewButton_2.setBackground(new Color(42, 88, 173));
-		btnNewButton_2.setForeground(Color.WHITE);
-		btnNewButton_2.setBounds(356, 397, 132, 39);
-		add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
-		// Limpiar resultados
-		public void actionPerformed(ActionEvent e) {				
-				
-				try {
-					
-				} catch (Exception ex) {
-					System.out.println(ex.getMessage());
-				}
-		
+
+		// ----------------------------------------------
+		JButton btnLimpiart = new JButton("LIMPIAR");
+		btnLimpiart.setFocusPainted(false);
+		btnLimpiart.setFont(new Font("Century Gothic", Font.PLAIN, 11));
+		btnLimpiart.setBorder(new LineBorder(Color.WHITE));
+		btnLimpiart.setBackground(new Color(42, 88, 173));
+		btnLimpiart.setForeground(Color.WHITE);
+		btnLimpiart.setBounds(356, 397, 132, 39);
+		add(btnLimpiart);
+		btnLimpiart.addActionListener(new ActionListener() {
+			// Limpiar resultados
+			public void actionPerformed(ActionEvent e) {
+				ResultSet rs = conn.getAll();
+				ActualizarTabla(rs);
+				placa.setText("");
+				propietario.setText("");
+				fecha.setText("");
+				tipo.setSelectedIndex(0);
+				ubicacion.setSelectedIndex(0);
 			}
 		});
-					
+
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBounds(157, 466, 285, 21);
 		add(progressBar);
@@ -296,14 +255,13 @@ public class ListarVehiculos extends JPanel {
 		add(scrollPane_1);
 		scrollPane_1.setAutoscrolls(true);
 
-		
 		scrollPane_1.setViewportView(tabla1);
 		tabla1.setAlignmentY(Component.TOP_ALIGNMENT);
 		tabla1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-		
-		ActualizarTabla();
-		
-		
+		AppConection conn = new AppConection();
+		ResultSet rs = conn.getAll();
+		ActualizarTabla(rs);
+
 	}
 }

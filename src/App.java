@@ -127,7 +127,7 @@ public class App extends JFrame {
 				setBounds(100, 100, 896, 536);
 				listarVehiculos.setVisible(true);
 				getContentPane().add(listarVehiculos);
-				listarVehiculos.ActualizarTabla();
+				
 			}
 		});
 		btnNewButton_3.setMargin(new Insets(2, 2, 2, 2));
