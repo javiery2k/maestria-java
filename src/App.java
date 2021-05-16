@@ -124,7 +124,7 @@ public class App extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				retirarVehiculo.setVisible(false);
 				ingresarVehiculo.setVisible(false);
-				setBounds(100, 100, 896, 536);
+				setBounds(100, 100, 1096, 536);
 				listarVehiculos.setVisible(true);
 				getContentPane().add(listarVehiculos);
 				

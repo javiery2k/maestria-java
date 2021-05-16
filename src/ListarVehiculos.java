@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
@@ -33,7 +34,7 @@ public class ListarVehiculos extends JPanel {
 	private JTextField fecha;
 	private static JTable tabla1 = new JTable();
 	AppConection conn = new AppConection();
-
+	static DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 	/**
 	 * Create the panel.
 	 * 
@@ -69,15 +70,15 @@ public class ListarVehiculos extends JPanel {
 				ob[1] = (rs.getString(3));
 				ob[2] = (rs.getString(4));
 				if (rs.getString(5) != null) {
-					ob[3] = rs.getString(5).substring(10).substring(0, 6);
+					ob[3] = rs.getString(5).substring(0, 16);
 				} else {
-					ob[3] = "--";
+					ob[3] = "";
 				}
 				if (rs.getString(6) != null) {
-					ob[4] = rs.getString(6).substring(10).substring(0, 6);
+					ob[4] = rs.getString(6).substring(0, 16);
 					;
 				} else {
-					ob[4] = "--";
+					ob[4] = "";
 				}
 
 				ob[5] = ("$" + rs.getString(7));
@@ -96,7 +97,7 @@ public class ListarVehiculos extends JPanel {
 	public void init() {
 		setLayout(null);
 		setBackground(new Color(42, 88, 173));
-		setBounds(282, 0, 600, 500);
+		setBounds(282, 0, 800, 500);
 
 		String[][] data = { { "", "", "" } }; // Object[][] data = tabla;
 		String column[] = { "ID", "PLACA", "PROPIETARIO" };
@@ -105,7 +106,7 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblNewLabel.setBounds(171, 32, 257, 30);
+		lblNewLabel.setBounds(271, 32, 257, 30);
 
 		add(lblNewLabel);
 
@@ -113,41 +114,41 @@ public class ListarVehiculos extends JPanel {
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(57, 89, 69, 20);
+		lblNewLabel_1.setBounds(88, 89, 69, 20);
 		add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("Propietario");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblNewLabel_2.setBounds(167, 89, 124, 20);
+		lblNewLabel_2.setBounds(245, 89, 124, 20);
 		add(lblNewLabel_2);
 
 		JLabel lblNewLabel_3 = new JLabel("Fecha");
 		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(328, 91, 78, 20);
+		lblNewLabel_3.setBounds(450, 89, 78, 20);
 		add(lblNewLabel_3);
 
 		placa = new JTextField();
 		placa.setBorder(new LineBorder(new Color(171, 173, 179)));
 		placa.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		placa.setBounds(40, 120, 100, 25);
+		placa.setBounds(80, 120, 100, 25);
 		add(placa);
 		placa.setColumns(10);
 
 		propietario = new JTextField();
 		propietario.setBorder(new LineBorder(new Color(171, 173, 179)));
 		propietario.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		propietario.setBounds(180, 120, 100, 25);
+		propietario.setBounds(260, 120, 100, 25);
 		add(propietario);
 		propietario.setColumns(10);
 
 		fecha = new JTextField();
 		fecha.setBorder(new LineBorder(new Color(171, 173, 179)));
 		fecha.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		fecha.setBounds(320, 120, 100, 25);
+		fecha.setBounds(440, 120, 100, 25);
 		add(fecha);
 		fecha.setColumns(10);
 
@@ -155,33 +156,33 @@ public class ListarVehiculos extends JPanel {
 		btnNewButton.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnNewButton.setForeground(SystemColor.textHighlight);
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		btnNewButton.setBounds(460, 120, 100, 25);
+		btnNewButton.setBounds(620, 120, 100, 25);
 		add(btnNewButton);
 
 		JComboBox tipo = new JComboBox();
 		tipo.setModel(new DefaultComboBoxModel(new String[] { "", "AUTOMOVIL", "MOTOCICLETA" }));
 		tipo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		tipo.setBounds(100, 190, 150, 25);
+		tipo.setBounds(166, 190, 150, 25);
 		add(tipo);
 
 		JComboBox disponibilidad = new JComboBox();
 		disponibilidad.setModel(new DefaultComboBoxModel(new String[] { "", "DISPONIBLE", "NO DISPONIBLE" }));
 		disponibilidad.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-		disponibilidad.setBounds(350, 190, 150, 25);
+		disponibilidad.setBounds(482, 190, 150, 25);
 		add(disponibilidad);
 
 		JLabel lblTipoVehiculo = new JLabel("Tipo Vehiculo");
 		lblTipoVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoVehiculo.setForeground(Color.WHITE);
 		lblTipoVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblTipoVehiculo.setBounds(116, 159, 113, 20);
+		lblTipoVehiculo.setBounds(161, 159, 113, 20);
 		add(lblTipoVehiculo);
 
 		JLabel lblUbicacionVehiculo = new JLabel("Disponibilidad");
 		lblUbicacionVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUbicacionVehiculo.setForeground(Color.WHITE);
 		lblUbicacionVehiculo.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblUbicacionVehiculo.setBounds(322, 159, 202, 20);
+		lblUbicacionVehiculo.setBounds(435, 159, 202, 20);
 		add(lblUbicacionVehiculo);
 
 		JButton btnBuscar = new JButton("BUSCAR");
@@ -190,7 +191,7 @@ public class ListarVehiculos extends JPanel {
 		btnBuscar.setBorder(new LineBorder(Color.WHITE));
 		btnBuscar.setBackground(new Color(42, 88, 173));
 		btnBuscar.setForeground(Color.WHITE);
-		btnBuscar.setBounds(112, 397, 132, 39);
+		btnBuscar.setBounds(178, 397, 132, 39);
 		add(btnBuscar);
 
 		// ----------------------------------------------
@@ -217,7 +218,7 @@ public class ListarVehiculos extends JPanel {
 		btnLimpiart.setBorder(new LineBorder(Color.WHITE));
 		btnLimpiart.setBackground(new Color(42, 88, 173));
 		btnLimpiart.setForeground(Color.WHITE);
-		btnLimpiart.setBounds(356, 397, 132, 39);
+		btnLimpiart.setBounds(488, 397, 132, 39);
 		add(btnLimpiart);
 		btnLimpiart.addActionListener(new ActionListener() {
 			// Limpiar resultados
@@ -234,7 +235,7 @@ public class ListarVehiculos extends JPanel {
 		
 		//int i=0;
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(157, 466, 285, 21);
+		progressBar.setBounds(257, 466, 285, 21);
 		progressBar.setValue(0);    
 		progressBar.setStringPainted(true);  
 		add(progressBar);
@@ -248,7 +249,7 @@ public class ListarVehiculos extends JPanel {
 		lblProgreso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProgreso.setForeground(Color.WHITE);
 		lblProgreso.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		lblProgreso.setBounds(252, 438, 95, 21);
+		lblProgreso.setBounds(352, 438, 95, 21);
 		add(lblProgreso);
 
 		JLabel label_version = new JLabel("Parking 1.0");
@@ -257,7 +258,7 @@ public class ListarVehiculos extends JPanel {
 		label_version.setBounds(601, 473, 84, 21);
 		add(label_version);
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 228, 580, 150);
+		scrollPane_1.setBounds(10, 228, 780, 150);
 		add(scrollPane_1);
 		scrollPane_1.setAutoscrolls(true);
 
