@@ -153,8 +153,7 @@ public class ListarVehiculos extends JPanel {
 		jdp = new JDatePro();
 		jdp.setBackground(new Color(42, 88, 173));
 		jdp.setBounds(440, 115, 250, 40);
-		add(jdp);
-		
+		add(jdp);		
 
 		//***************************************************
 		
@@ -200,7 +199,7 @@ public class ListarVehiculos extends JPanel {
 				// Obtenemos los valores ingresados
 				String Placa = placa.getText();
 				String Propietario = propietario.getText();
-				String Fecha = fecha.getText();
+				String Fecha = jdp.getDate();
 				String TipoVehiculo = tipo.getSelectedItem().toString();
 				String Estado = disponibilidad.getSelectedItem().toString();
 				ResultSet rs = conn.getSearch(Placa, Propietario, Fecha, TipoVehiculo, Estado);
